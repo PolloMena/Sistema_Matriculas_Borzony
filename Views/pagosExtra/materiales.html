@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materiales</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hoja de estilos personalizada -->
+    <link rel="stylesheet" href="../Assets/index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- -----------------------------NAVBAR --------------------->
+    <div id="navbar-container">
+
+        
+        <script>
+            
+            fetch('../Auxiliares/navbarFondo.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="container-fluid d-flex">
+    
+    <!--------------------- Cuadro izquierdo ----------------------------->
+        <div class="col-6 bg-light p-4 rounded shadow">
+            <div class="bg-light p-4 rounded shadow">
+
+                
+                <h2>Identificar Alumno</h2>
+                <!-- Campo de Alumno -->
+                <div class="mb-3">
+                    <label for="buscarAlumno" class="form-label">
+                        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
+                        - Buscar Alumno
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="buscarAlumno" placeholder="Ingrese el nombre del alumno" required>
+                    </div>
+                </div>
+
+                <!-- Botón de Buscar -->
+                <div class="d-grid">
+                    <button type="button" class="btn btn-warning" onclick="window.location.href = '#';">
+                        <i class="fas fa-search"></i> Buscar
+                    </button>
+                </div>
+
+                <!-- Campo de Último Pago -->
+                <div class="mb-3 mt-4">
+                    <label for="ultimoPago" class="form-label">
+                        <i class="fas fa-dollar-sign"></i> <!-- Ícono de dólar -->
+                        - Último Pago Realizado:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="ultimoPago" placeholder="Último pago registrado" readonly>
+                    </div>
+                </div>
+
+                <!-- Campo de Año y Grupo -->
+                <div class="mb-3 mt-4">
+                    <div class="row">
+                        <!-- Campo de Año (Izquierda) -->
+                        <div class="col-md-6">
+                            <label for="año" class="form-label">
+                                <i class="fas fa-calendar"></i> <!-- Ícono de calendario -->
+                                - Año:
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="año" placeholder="Año" readonly>
+                            </div>
+                        </div>
+
+                        <!-- Campo de Grupo (Derecha) -->
+                        <div class="col-md-6">
+                            <label for="grupo" class="form-label">
+                                <i class="fas fa-users"></i> <!-- Ícono de grupo -->
+                                - Grupo:
+                            </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="grupo" placeholder="Grupo" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botón de Nuevo Alumno -->
+                <div class="d-grid">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href = '#';">
+                    
+                        <a href="inscripcion.html" target="_blank" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Nuevo Alumno
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--------------------- Cuadro izquierdo ----------------------------->
+
+        <div class="col-6 bg-light text-white p-4">
+            <!-- Div de la tabla y el total -->
+            <div class="bg-light p-4 rounded shadow">
+                <!-- Título del cuadro -->
+                <h3 class="text-primary">Pagos de Materiales</h3>
+
+                <!-- Tabla de pagos -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fila 1 -->
+                        <tr>
+                            <td>
+                                <input type="date" class="form-control" id="fecha1" value="">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="monto1" value="1500.00">
+                            </td>
+                        </tr>
+                        <!-- Fila 2 -->
+                        <tr>
+                            <td>
+                                <input type="date" class="form-control" id="fecha2" value="">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="monto2" value="1500.00">
+                            </td>
+                        </tr>
+                        <!-- Fila 3 -->
+                        <tr>
+                            <td>
+                                <input type="date" class="form-control" id="fecha3" value="">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="monto3" value="1500.00">
+                            </td>
+                        </tr>
+                        <!-- Fila 4 -->
+                        <tr>
+                            <td>
+                                <input type="date" class="form-control" id="fecha4" value="">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="monto4" value="1500.00">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Total de pagos -->
+                <div class="mt-4">
+                    <label for="totalPagos" class="form-label text-black">
+                        <i class="fas fa-dollar-sign"></i> <!-- Ícono de dólar -->
+                        - Total:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="totalPagos" placeholder="$6,000.00" readonly>
+                        <button type="button" class="btn btn-success">
+                            <i class="fas fa-check"></i> Registrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <!-- Div de la tabla y el total -->
+            <div class="bg-light p-4 rounded shadow">
+                <!-- Título del cuadro -->
+                <h3 class="text-primary">Pagos de Uniformes</h3>
+            
+                <!-- Tabla de pagos -->
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Fila 1 -->
+                        <tr>
+                            <td>
+                                <input type="date" class="form-control" id="fechaUni" value="2023-09-01">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" id="montoUni" value="1500.00">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <!-- Total y Botón "Registrar" -->
+                <div class="mt-4">
+                    <label for="totalUniformes" class="form-label text-black">
+                        <i class="fas fa-dollar-sign"></i> <!-- Ícono de dólar -->
+                        - Total:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="totalUniformes" placeholder="$1,500.00" readonly>
+                        <button type="button" class="btn btn-success">
+                            <i class="fas fa-check"></i> Registrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<div id="footer-container">
+
+    <!-- Script para cargar el menú -->
+    <script>
+        // Carga el contenido de navbar.html en el contenedor
+        fetch('../Auxiliares/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+</div>
+
+</html>

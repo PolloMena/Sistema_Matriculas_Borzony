@@ -1,0 +1,42 @@
+/* Estilos para las tarjetas de usuario */
+.user-card {
+    background-color: #f8f9fa; /* Fondo claro */
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Ancho fijo para cada tarjeta */
+    flex: 0 0 auto; /* Evita que las tarjetas se estiren */
+}
+
+.user-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-card h5 {
+    margin-bottom: 10px;
+}
+
+.user-card .form-control {
+    margin-bottom: 10px;
+}
+
+/* Contenedor de desplazamiento horizontal */
+.scroll-container {
+    display: flex;
+    overflow-x: auto; /* Permite el desplazamiento horizontal */
+    padding: 10px;
+}
+
+/* Estilos para la barra de desplazamiento */
+.scroll-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}

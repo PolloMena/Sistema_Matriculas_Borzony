@@ -1,0 +1,6 @@
+/* Estilos para los cuadros */
+.col-6 {
+    height: 100vh; /* Ocupa todo el alto de la ventana */
+    overflow-y: auto; /* Permite el scroll si el contenido es muy largo */
+    padding: 20px; /* Espaciado interno */
+}

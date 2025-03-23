@@ -1,0 +1,64 @@
+/* Estilos para el banner azul */
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0; /* Cambia "right" a "left" */
+    width: 100%; /* Ocupa todo el ancho */
+    background-color: white; /* Azul de Bootstrap */
+    color: #007bff; /* Texto en blanco */
+    padding: 10px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right; /* Alinea el texto a la derecha */
+    z-index: 1000; /* Para que esté por encima de otros elementos */
+}
+
+.fondo{
+    background-color: #007bff;
+}
+
+/* Contenedor principal */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centra verticalmente */
+    gap: 20px; /* Espacio entre el formulario y la imagen */
+    padding: 20px;
+}
+
+/* Contenedor del formulario de inicio de sesión */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Estilos para el cuadro del formulario */
+.login-box {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+/* Estilos para el cuadro de la imagen */
+.image-box {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden; /* Para que la imagen no se salga del borde */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.icon {
+    width: 50px; /* Ajusta el tamaño de la imagen */
+    height: 30px;
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
+}

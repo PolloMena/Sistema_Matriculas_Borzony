@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal - Borzony</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hoja de estilos personalizada -->
+    <link rel="stylesheet" href="../Assets/index.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <!-- Contenedor para el menú -->
+    <div id="navbar-container">
+
+        <!-- Script para cargar el menú -->
+        <script>
+            // Carga el contenido de navbar.html en el contenedor
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+        </script>
+
+    </div>
+    <!-- Contenedor principal para la imagen y el texto -->
+    <div class="container mt-4">
+        <div class="row align-items-center"> <!-- "align-items-center" alinea verticalmente -->
+            <!-- Cuadro de la imagen a la izquierda -->
+            <div class="col-md-6">
+                <div class="image-box">
+                    <img src="../Assets/img/logo.jpg" alt="Imagen de fondo" class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Contenido de la página a la derecha -->
+            <div class="col-md-6">
+                <div class="bienvenida">
+                    <h1>Bienvenido al Sistema de Gestión Financiera</h1>
+                    <p>Selecciona una opción del menú para comenzar.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS (opcional, si necesitas funcionalidades de Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+<!-- Contenedor para el footer -->
+<div id="footer-container">
+
+    <!-- Script para cargar el menú -->
+    <script>
+        // Carga el contenido de navbar.html en el contenedor
+        fetch('Auxiliares/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+</div>
+
+</html>

@@ -1,0 +1,15 @@
+/* Estilos para los encabezados de columna */
+.bg-primary, .bg-success {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Estilos para los íconos */
+h4 i {
+    margin-right: 10px;
+}
+
+/* Estilos para los campos de entrada */
+.form-control {
+    margin-bottom: 15px;
+}
