@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Usuario</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hoja de estilos personalizada -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- ICONO DE LA PAGINA WEB-->
+    <link rel="icon" href="../../Assets/img/logo2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Assets/img/logo2.png" type="image/x-icon">
+
+    <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Contenedor para el menú -->
+    <div id="navbar-container">
+
+        <!-- Script para cargar el menú -->
+        <script>
+            // Carga el contenido de navbar.html en el contenedor
+            fetch('../Auxiliares/navbarFondo.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-user-plus me-2"></i>Agregar Nuevo Usuario</h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="formUsuario">
+                            <!-- Campo Usuario -->
+                            <div class="mb-3">
+                                <label for="usuario" class="form-label">Usuario</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="usuario" name="usuario" required>
+                                </div>
+                            </div>
+    
+                            <!-- Campo Rol -->
+                            <div class="mb-3">
+                                <label for="rol" class="form-label">Rol</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                    <select class="form-select" id="rol" name="rol" required>
+                                        <option value="" selected disabled>Seleccione un rol</option>
+                                        <option value="administrativo">Administrativo</option>
+                                        <option value="secretaria">Secretaria</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+    
+                            <!-- Campo Contraseña -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="form-text">Mínimo 5 caracteres</div>
+                            </div>
+    
+                            <!-- Campo Repetir Contraseña -->
+                            <div class="mb-4">
+                                <label for="confirmPassword" class="form-label">Repetir Contraseña</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                    <button class="btn btn-outline-secondary toggle-password" type="button">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+    
+                            <!-- Botón Confirmar -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-check-circle me-2"></i>Confirmar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+
+<!-- Contenedor para el footer -->
+<div id="footer-container">
+
+    <!-- Script para cargar el menú -->
+    <script>
+        // Carga el contenido de navbar.html en el contenedor
+        fetch('../Auxiliares/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+</div>
+
+<!-- JavaScript para mostrar/ocultar contraseña -->
+<script>
+    document.querySelectorAll('.toggle-password').forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        });
+    });
+    
+    // Validación básica del formulario
+    document.getElementById('formUsuario').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden');
+            return;
+        }
+        
+        if (password.length < 5) {
+            alert('La contraseña debe tener al menos 8 caracteres');
+            return;
+        }
+        
+        // Aquí iría tu lógica para enviar el formulario
+        alert('Usuario agregado correctamente');
+        this.reset();
+    });
+    </script>
+
+</html>

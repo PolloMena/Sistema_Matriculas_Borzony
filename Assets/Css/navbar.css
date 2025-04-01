@@ -1,0 +1,23 @@
+/* Estilos para el menú de navegación */
+/* Estilos para los íconos del menú */
+.nav-item {
+    margin: 0 10px; /* Espacio entre opciones */
+}
+
+.nav-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white !important; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.nav-item a:hover {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Sombra blanca */
+    transition: text-shadow 0.3s ease; /* Transición suave */
+}
+
+.nav-item a:hover {
+    color: #ffcc00 !important; /* Color al pasar el mouse */
+}

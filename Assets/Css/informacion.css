@@ -35,3 +35,13 @@ h4.text-primary {
 .btn-primary:hover {
     background-color: #0056b3;
 }
+
+.text_link, 
+.text_link:hover, 
+.text_link:focus, 
+.text_link:active, 
+.text_link:visited {
+    text-decoration: none !important;
+    color: inherit !important; /* Opcional: mantiene el color del texto padre */
+    outline: none !important; /* Elimina el borde en focus (accesibilidad) */
+}

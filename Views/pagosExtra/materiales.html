@@ -3,13 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materiales</title>
+    <title>Otros Pagos</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hoja de estilos personalizada -->
-    <link rel="stylesheet" href="../Assets/index.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- ICONO DE LA PAGINA WEB-->
+    <link rel="icon" href="../../Assets/img/logo2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Assets/img/logo2.png" type="image/x-icon">
+
+    <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -177,32 +183,45 @@
             </div>
 
             <br>
-            <!-- Div de la tabla y el total -->
+            <!-- Div de la tabla de Pagos extras -->
             <div class="bg-light p-4 rounded shadow">
                 <!-- Título del cuadro -->
-                <h3 class="text-primary">Pagos de Uniformes</h3>
-            
+                <h3 class="text-primary">Otros Pagos</h3>
+
                 <!-- Tabla de pagos -->
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Concepto</th>
                             <th>Monto</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!-- Fila 1 -->
                         <tr>
+                            <!-- Fecha -->
                             <td>
-                                <input type="date" class="form-control" id="fechaUni" value="2023-09-01">
+                                <input type="date" class="form-control" id="fechaUni" value="null">
                             </td>
+                            <!-- Concepto -->
+                            <td>
+                                <select class="form-select" id="concepto">
+                                    <option value="" disabled selected>Seleccionar</option>
+                                    <option value="uniformes">Uniformes</option>
+                                    <option value="inscripcion">Inscripción</option>
+                                    <option value="donativo">Donativo</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </td>
+                            <!-- Monto -->
                             <td>
                                 <input type="number" class="form-control" id="montoUni" value="1500.00">
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            
+
                 <!-- Total y Botón "Registrar" -->
                 <div class="mt-4">
                     <label for="totalUniformes" class="form-label text-black">
