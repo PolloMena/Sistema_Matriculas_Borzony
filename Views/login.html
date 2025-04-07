@@ -26,31 +26,25 @@
         <div class="login-container">
             <div class="login-box">
                 <h1 class="text-center mb-4">Inicio de Sesión</h1>
-                <form>
+                <form id="loginForm" action="../Assets/Php/login.php" method="POST">
                     <!-- Campo de Usuario -->
                     <div class="mb-3">
                         <label for="usuario" class="form-label">
-                            <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-                            - Usuario
+                            <i class="fas fa-user"></i> Usuario
                         </label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="usuario" placeholder="Ingrese su usuario" required>
-                        </div>
+                        <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Ingrese su usuario" required>
                     </div>
                 
                     <!-- Campo de Contraseña -->
                     <div class="mb-3">
                         <label for="contrasena" class="form-label">
-                            <i class="fas fa-lock"></i> <!-- Ícono de contraseña -->
-                            - Contraseña
+                            <i class="fas fa-lock"></i> Contraseña
                         </label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="contrasena" placeholder="Ingrese su contraseña" required>
-                        </div>
+                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
                     </div>
                 
                     <div class="d-grid">
-                        <button type="button" class="btn btn-success" onclick="window.location.href = 'index.html';">
+                        <button type="submit" class="btn btn-success">
                             Ingresar
                         </button>
                     </div>

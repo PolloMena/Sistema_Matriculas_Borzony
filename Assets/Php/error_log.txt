@@ -1,0 +1,2 @@
+2025-04-04 08:26:31 - Duplicate entry 'MELF020303HMMNRRA0' for key 'CURP'
+2025-04-04 08:31:51 - Duplicate entry 'MELF020303HMMNRRA1' for key 'CURP'

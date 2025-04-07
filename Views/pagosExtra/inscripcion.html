@@ -38,163 +38,228 @@
 
     <div class="container-fluid bg-light p-4 rounded shadow">
         <h2 class="text-center mb-4">Registro de Nuevo Alumno</h2>
-        <div class="row">
-            <!-- Columna 1: Información del Estudiante -->
-            <div class="col-md-4">
-                <div class="bg-primary text-white p-3 rounded">
-                    <h4><i class="fas fa-user-graduate"></i> Información del Estudiante</h4>
-                </div>
-                <div class="mt-3">
-                    <!-- Apellido Paterno -->
-                    <div class="mb-3">
-                        <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellidoPaterno" placeholder="Ingrese el apellido paterno" required>
+        <!-- INICIO DEL FORMULARIO (cambios clave: action, method y name en inputs) -->
+        <form action="../../Assets/Php/inscribir.php" method="POST">
+            <div class="row">
+                <!-- Columna 1: Información del Estudiante -->
+                <div class="col-md-4">
+                    <div class="bg-primary text-white p-3 rounded">
+                        <h4><i class="fas fa-user-graduate"></i> Información del Estudiante</h4>
                     </div>
-                    <!-- Apellido Materno -->
-                    <div class="mb-3">
-                        <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellidoMaterno" placeholder="Ingrese el apellido materno" required>
-                    </div>
-                    <!-- Nombres -->
-                    <div class="mb-3">
-                        <label for="nombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="nombres" placeholder="Ingrese los nombres" required>
-                    </div>
-                    <!-- Fecha de Nacimiento -->
-                    <div class="mb-3">
-                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNacimiento" required>
-                    </div>
-                    <!-- CURP -->
-                    <div class="mb-3">
-                        <label for="curp" class="form-label">CURP</label>
-                        <input type="text" class="form-control" id="curp" placeholder="Ingrese la CURP" required>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Columna 2: Información de Contacto -->
-            <div class="col-md-4">
-                <div class="bg-success text-white p-3 rounded">
-                    <h4><i class="fas fa-address-book"></i> Información de Contacto</h4>
-                </div>
-                <div class="mt-3">
-                    <!-- Apellido Paterno -->
-                    <div class="mb-3">
-                        <label for="contactoApellidoPaterno" class="form-label">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="contactoApellidoPaterno" placeholder="Ingrese el apellido paterno" required>
-                    </div>
-                    <!-- Apellido Materno -->
-                    <div class="mb-3">
-                        <label for="contactoApellidoMaterno" class="form-label">Apellido Materno</label>
-                        <input type="text" class="form-control" id="contactoApellidoMaterno" placeholder="Ingrese el apellido materno" required>
-                    </div>
-                    <!-- Nombres -->
-                    <div class="mb-3">
-                        <label for="contactoNombres" class="form-label">Nombres</label>
-                        <input type="text" class="form-control" id="contactoNombres" placeholder="Ingrese los nombres" required>
-                    </div>
-                    <!-- Correo Electrónico -->
-                    <div class="mb-3">
-                        <label for="correoElectronico" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="correoElectronico" placeholder="Ingrese el correo electrónico" required>
-                    </div>
-                    <!-- Número de Teléfono -->
-                    <div class="mb-3">
-                        <label for="telefono" class="form-label">Número de Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="Ingrese el número de teléfono" required>
-                    </div>
-                    <!-- Parentesco -->
-                    <div class="mb-3">
-                        <label for="parentesco" class="form-label">Parentesco</label>
-                        <select class="form-select" id="parentesco" required>
-                            <option value="" disabled selected>Seleccione el parentesco</option>
-                            <option value="madre">Madre</option>
-                            <option value="padre">Padre</option>
-                            <option value="tutor">Tutor</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-    
-            
-            <!-- Columna 3: Datos de Facturación -->
-            <div class="col-md-4">
-                <div class="bg-warning text-dark p-3 rounded">
-                    <h4><i class="fas fa-file-invoice-dollar"></i> Datos de Facturación</h4>
-                </div>
-                <div class="mt-3">
-
-                    <!-- NUEVO CAMPO: Monto de Inscripción -->
-                    <div class="mb-3">
-                        <label for="montoInscripcion" class="form-label">Monto de Inscripción ($)</label>
-                        <div class="input-group">
-                            <span class="input-group-text">$</span>
-                            <input 
-                                type="number" 
-                                class="form-control" 
-                                id="montoInscripcion" 
-                                name="montoInscripcion"
-                                value="00.00" 
-                                min="0" 
-                                step="0.01"
-                                required
-                                placeholder="Ej: 2600.00"
-                            >
+                    <div class="mt-3">
+                        <!-- Apellido Paterno -->
+                        <div class="mb-3">
+                            <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="apellidoPaterno" name="apellido_paterno" placeholder="Ingrese el apellido paterno" required>
                         </div>
-                    </div>
-                    
-                    <!-- Nombre ante el SAT -->
-                    <div class="mb-3">
-                        <label for="nombreSAT" class="form-label">Nombre ante el SAT</label>
-                        <input type="text" class="form-control" id="nombreSAT" placeholder="Ingrese el nombre ante el SAT" required>
-                    </div>
-                    <!-- RFC -->
-                    <div class="mb-3">
-                        <label for="rfc" class="form-label">RFC</label>
-                        <input type="text" class="form-control" id="rfc" placeholder="Ingrese el RFC" required>
-                    </div>
-                    <!-- Uso del CFDI -->
-                    <div class="mb-3">
-                        <label for="usoCFDI" class="form-label">Uso del CFDI</label>
-                        <select class="form-select" id="usoCFDI" required>
-                            <option value="" disabled selected>Seleccione el uso del CFDI</option>
-                            <option value="G01">Adquisición de mercancías</option>
-                            <option value="G03">Gastos en general</option>
-                            <option value="P01">Por definir</option>
-                            <!-- Agrega más opciones según sea necesario -->
-                        </select>
-                    </div>
-                    <!-- Correo Electrónico -->
-                    <div class="mb-3">
-                        <label for="correoFacturacion" class="form-label">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="correoFacturacion" placeholder="Ingrese el correo electrónico" required>
-                    </div>
-                    <!-- Entrego Constancia de Situación Fiscal -->
-                    <div class="mb-3">
-                        <label class="form-label">¿Entregó constancia de situación fiscal?</label>
-                        <div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="constanciaFiscal" id="constanciaSi" value="si" required>
-                                <label class="form-check-label" for="constanciaSi">Sí</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="constanciaFiscal" id="constanciaNo" value="no" required>
-                                <label class="form-check-label" for="constanciaNo">No</label>
-                            </div>
+                        <!-- Apellido Materno -->
+                        <div class="mb-3">
+                            <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="apellidoMaterno" name="apellido_materno" placeholder="Ingrese el apellido materno" required>
+                        </div>
+                        <!-- Nombres -->
+                        <div class="mb-3">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nombres" name="nombres" placeholder="Ingrese los nombres" required>
+                        </div>
+                        <!-- Fecha de Nacimiento -->
+                        <div class="mb-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" name="fecha_nacimiento" required>
+                        </div>
+                        <!-- CURP -->
+                        <div class="mb-3">
+                            <label for="curp" class="form-label">CURP</label>
+                            <input type="text" class="form-control" id="curp" name="curp" placeholder="Ingrese la CURP" required>
                         </div>
                     </div>
                 </div>
-            </div>
+        
+                <!-- Columna 2: Información de Contacto -->
+                <div class="col-md-4">
+                    <div class="bg-success text-white p-3 rounded">
+                        <h4><i class="fas fa-address-book"></i> Información de Contacto</h4>
+                    </div>
+                    <div class="mt-3">
+                        <!-- Apellido Paterno -->
+                        <div class="mb-3">
+                            <label for="contactoApellidoPaterno" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="contactoApellidoPaterno" name="contacto_apellido_paterno" placeholder="Ingrese el apellido paterno" required>
+                        </div>
+                        <!-- Apellido Materno -->
+                        <div class="mb-3">
+                            <label for="contactoApellidoMaterno" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="contactoApellidoMaterno" name="contacto_apellido_materno" placeholder="Ingrese el apellido materno" required>
+                        </div>
+                        <!-- Nombres -->
+                        <div class="mb-3">
+                            <label for="contactoNombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="contactoNombres" name="contacto_nombres" placeholder="Ingrese los nombres" required>
+                        </div>
+                        <!-- Correo Electrónico -->
+                        <div class="mb-3">
+                            <label for="correoElectronico" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correoElectronico" name="contacto_email" placeholder="Ingrese el correo electrónico" required>
+                        </div>
+                        <!-- Número de Teléfono -->
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Número de Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ingrese el número de teléfono" required>
+                        </div>
+                        <!-- Parentesco -->
+                        <div class="mb-3">
+                            <label for="parentesco" class="form-label">Parentesco</label>
+                            <select class="form-select" id="parentesco" name="parentesco" required>
+                                <option value="" disabled selected>Seleccione el parentesco</option>
+                                <option value="madre">Madre</option>
+                                <option value="padre">Padre</option>
+                                <option value="padre">Hermano</option>
+                                <option value="tutor">Tutor</option>
+                                <option value="tutor">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Columna 3: Datos de Facturación -->
+                <div class="col-md-4">
+                    <div class="bg-warning text-dark p-3 rounded">
+                        <h4><i class="fas fa-file-invoice-dollar"></i> Datos de Facturación</h4>
+                    </div>
+                    <div class="mt-3">
+                        <!-- Monto de Inscripción -->
+                        <div class="mb-3">
+                            <label for="montoInscripcion" class="form-label">Monto de Inscripción ($)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input 
+                                    type="number" 
+                                    class="form-control" 
+                                    id="montoInscripcion" 
+                                    name="monto_inscripcion"
+                                    value="00.00" 
+                                    min="0" 
+                                    step="0.01"
+                                    required
+                                    placeholder="Ej: 2600.00"
+                                >
+                            </div>
+                        </div>
+                        <!-- Nombre ante el SAT -->
+                        <div class="mb-3">
+                            <label for="nombreSAT" class="form-label">Nombre ante el SAT</label>
+                            <input type="text" class="form-control" id="nombreSAT" name="nombre_sat" placeholder="Ingrese el nombre ante el SAT" required>
+                        </div>
+                        <!-- RFC -->
+                        <div class="mb-3">
+                            <label for="rfc" class="form-label">RFC</label>
+                            <input type="text" class="form-control" id="rfc" name="rfc" placeholder="Ingrese el RFC" required>
+                        </div>
+                        <!-- Uso del CFDI -->
+                        <div class="mb-3">
+                            <label for="usoCFDI" class="form-label">Uso del CFDI</label>
+                            <select class="form-select" id="usoCFDI" name="uso_cfdi" required>
+                                <option value="" disabled selected>Seleccione el uso del CFDI</option>
+                                <option value="G01">Adquisición de mercancías</option>
+                                <option value="G03">Gastos en general</option>
+                                <option value="P01">Por definir</option>
+                            </select>
+                        </div>
+                        <!-- Correo Electrónico -->
+                        <div class="mb-3">
+                            <label for="correoFacturacion" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="correoFacturacion" name="correo_facturacion" placeholder="Ingrese el correo electrónico" required>
+                        </div>
+                        <!-- Constancia Fiscal -->
+                        <div class="mb-3">
+                            <label class="form-label">¿Entregó constancia de situación fiscal?</label>
+                            <div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="constancia_fiscal" id="constanciaSi" value="si" required>
+                                    <label class="form-check-label" for="constanciaSi">Sí</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="constancia_fiscal" id="constanciaNo" value="no" required>
+                                    <label class="form-check-label" for="constanciaNo">No</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Botón de Registrar -->
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-success btn-lg">
-                    <i class="fas fa-save"></i> Registrar
-                </button>
+                <!-- Botón de Registrar -->
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="fas fa-save"></i> Registrar
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
+        <!-- FIN DEL FORMULARIO -->
     </div>
+
+    <script>
+        // Mostrar notificación al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationData = localStorage.getItem('notification');
+            if (notificationData) {
+                const { type, message } = JSON.parse(notificationData);
+                showNotification(message, type);
+                localStorage.removeItem('notification'); // Limpiar después de mostrar
+            }
+        });
+        
+        function showNotification(message, type) {
+        const notification = document.createElement('div');
+        
+        // Estilos base para todos los tipos
+        notification.style.position = 'fixed';
+        notification.style.top = '20px';
+        notification.style.right = '20px';
+        notification.style.zIndex = '10000';
+        notification.style.padding = '15px';
+        notification.style.borderRadius = '5px';
+        notification.style.color = 'white';
+        notification.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+        notification.style.maxWidth = '400px';
+        notification.style.display = 'flex';
+        notification.style.alignItems = 'center';
+        notification.style.justifyContent = 'space-between';
+        
+        // Estilos condicionales por tipo
+        if (type === 'success') {
+            notification.style.backgroundColor = '#28a745'; // Verde
+        } else if (type === 'error') {
+            notification.style.backgroundColor = '#dc3545'; // Rojo
+        }
+        
+        notification.innerHTML = `
+            <span>${message}</span>
+            <button 
+                type="button" 
+                style="
+                    background: transparent;
+                    border: none;
+                    color: white;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    margin-left: 15px;
+                "
+                onclick="this.parentElement.remove()"
+            >
+                &times;
+            </button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto-eliminar después de 5 segundos
+        setTimeout(() => {
+            notification.style.opacity = '0';
+            setTimeout(() => notification.remove(), 300);
+        }, 5000);
+    }
+        </script>
 
 </body>
 
