@@ -17,6 +17,7 @@
 
     <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
     <div class="container-fluid bg-light p-4 rounded shadow">
         <h2 class="text-center mb-4">Registro de Nuevo Alumno</h2>
         <!-- INICIO DEL FORMULARIO (cambios clave: action, method y name en inputs) -->
-        <form action="../../Assets/Php/inscribir.php" method="POST">
+        <form id="formInscripcion" action="../../Assets/Php/inscribir.php" method="POST" onsubmit="return confirmarEnvio(event)">
             <div class="row">
                 <!-- Columna 1: Información del Estudiante -->
                 <div class="col-md-4">
@@ -162,7 +163,7 @@
                                 <option value="" disabled selected>Seleccione el uso del CFDI</option>
                                 <option value="G01">Adquisición de mercancías</option>
                                 <option value="G03">Gastos en general</option>
-                                <option value="P01">Por definir</option>
+                                <option value="Por definir">Por definir</option>
                             </select>
                         </div>
                         <!-- Correo Electrónico -->
@@ -199,6 +200,29 @@
     </div>
 
     <script>
+
+    function confirmarEnvio(event) {
+        event.preventDefault(); // Detener envío automático
+        
+        Swal.fire({
+            title: '¿Confirmar inscripción?',
+            html: `¿Estás seguro de registrar esta inscripción?`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, inscribir',
+            cancelButtonText: 'Cancelar',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Si confirma, enviar el formulario
+                document.getElementById('formInscripcion').submit();
+            }
+        });
+        
+        return false; // Importante para evitar envío automático
+    }
+
+
         // Mostrar notificación al cargar la página
         document.addEventListener('DOMContentLoaded', function() {
             const notificationData = localStorage.getItem('notification');
@@ -260,6 +284,8 @@
         }, 5000);
     }
         </script>
+
+
 
 </body>
 

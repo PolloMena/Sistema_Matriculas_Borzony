@@ -39,72 +39,80 @@
     <div class="container-fluid d-flex">
     
     <!--------------------- Cuadro izquierdo ----------------------------->
-        <div class="col-6 bg-light p-4 rounded shadow">
-            <div class="bg-light p-4 rounded shadow">
-
+    <div class="col-6 bg-light p-4">
+        <div class="bg-light p-4 rounded shadow">
+            <h2>Identificar Alumno</h2>
+            
+            <!-- Campos de Búsqueda -->
+            <div class="mb-3">
+                <label class="form-label"><i class="fas fa-user"></i> - Buscar Alumno</label>
                 
-                <h2>Identificar Alumno</h2>
-                <!-- Campo de Alumno -->
-                <div class="mb-3">
-                    <label for="buscarAlumno" class="form-label">
-                        <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-                        - Buscar Alumno
-                    </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="buscarAlumno" placeholder="Ingrese el nombre del alumno" required>
-                    </div>
+                <!-- Apellido Paterno -->
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Apellido Paterno</span>
+                    <input type="text" class="form-control" id="apellidoPaternoBusqueda" placeholder="Ingresar Apellido Paterno">
                 </div>
-
-                <!-- Botón de Buscar -->
-                <div class="d-grid">
-                    <button type="button" class="btn btn-warning" onclick="window.location.href = '#';">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
+                
+                <!-- Apellido Materno -->
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Apellido Materno</span>
+                    <input type="text" class="form-control" id="apellidoMaternoBusqueda" placeholder="Ingresar Apellido Materno">
                 </div>
-
-                <!-- Campo de Último Pago -->
-                <div class="mb-3 mt-4">
-                    <label for="ultimoPago" class="form-label">
-                        <i class="fas fa-dollar-sign"></i> <!-- Ícono de dólar -->
-                        - Último Pago Realizado:
-                    </label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="ultimoPago" placeholder="Último pago registrado" readonly>
-                    </div>
+                
+                <!-- Nombre(s) -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Nombre(s)</span>
+                    <input type="text" class="form-control" id="nombreBusqueda" placeholder="Ingresar Nombre">
                 </div>
-
-                <!-- Campo de Año y Grupo -->
-                <div class="mb-3 mt-4">
-                    <div class="row">
-                        <!-- Campo de Año (Izquierda) -->
-                        <div class="col-md-6">
-                            <label for="año" class="form-label">
-                                <i class="fas fa-calendar"></i> <!-- Ícono de calendario -->
-                                - Año:
-                            </label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="año" placeholder="Año" readonly>
-                            </div>
-                        </div>
-
-                        <!-- Campo de Grupo (Derecha) -->
-                        <div class="col-md-6">
-                            <label for="grupo" class="form-label">
-                                <i class="fas fa-users"></i> <!-- Ícono de grupo -->
-                                - Grupo:
-                            </label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="grupo" placeholder="Grupo" readonly>
-                            </div>
+            </div>
+    
+            <!-- Botón de Buscar -->
+            <div class="d-grid">
+                <button type="button" class="btn btn-warning" id="btnBuscarAlumno">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+            </div>
+    
+            <!-- Contenedor para resultados -->
+            <div id="resultadosBusqueda" class="mt-4"></div>
+    
+            <!-- Campos de información del alumno -->
+            <div class="mb-3 mt-4">
+                <label for="ultimoPago" class="form-label">
+                    <i class="fas fa-dollar-sign"></i> - Último Pago Realizado:
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="ultimoPago" placeholder="Último pago registrado" readonly>
+                </div>
+            </div>
+    
+            <div class="mb-3 mt-4">
+                <div class="row">
+                    
+                    <div class="col-md-6">
+                        <label for="año" class="form-label">
+                            <i class="fas fa-calendar"></i> - Año:
+                        </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="año" placeholder="Año" readonly>
                         </div>
                     </div>
+                    <div class="col-md-6">
+                        <label for="grupo" class="form-label">
+                            <i class="fas fa-users"></i> - Grupo:
+                        </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="grupo" placeholder="Grupo" readonly>
+                        </div>
+                    </div>
                 </div>
-
+            </div>
+        
                 <!-- Botón de Nuevo Alumno -->
                 <div class="d-grid">
                     <button type="button" class="btn btn-primary" onclick="window.location.href = '#';">
-                    
-                        <a href="inscripcion.html" target="_blank" class="btn btn-primary">
+                       
+                        <a href="pagosExtra/inscripcion.html" target="_blank" class="btn btn-primary">
                             <i class="fas fa-user-plus"></i> Nuevo Alumno
                         </a>
                     </button>
@@ -134,7 +142,7 @@
                                 <input type="date" class="form-control" id="fecha1" value="">
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="monto1" value="1500.00">
+                                <input type="number" class="form-control" id="monto1" value="00.00">
                             </td>
                         </tr>
                         <!-- Fila 2 -->
@@ -143,7 +151,7 @@
                                 <input type="date" class="form-control" id="fecha2" value="">
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="monto2" value="1500.00">
+                                <input type="number" class="form-control" id="monto2" value="00.00">
                             </td>
                         </tr>
                         <!-- Fila 3 -->
@@ -152,7 +160,7 @@
                                 <input type="date" class="form-control" id="fecha3" value="">
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="monto3" value="1500.00">
+                                <input type="number" class="form-control" id="monto3" value="00.00">
                             </td>
                         </tr>
                         <!-- Fila 4 -->
@@ -161,7 +169,7 @@
                                 <input type="date" class="form-control" id="fecha4" value="">
                             </td>
                             <td>
-                                <input type="number" class="form-control" id="monto4" value="1500.00">
+                                <input type="number" class="form-control" id="monto4" value="00.00">
                             </td>
                         </tr>
                     </tbody>
@@ -174,13 +182,13 @@
                         - Total:
                     </label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="totalPagos" placeholder="$6,000.00" readonly>
-                        <button type="button" class="btn btn-success">
+                        <input type="text" class="form-control" id="totalPagos" placeholder="$00.00" readonly>
+                        <button type="button" class="btn btn-success" id="btnRegistrarPago">
                             <i class="fas fa-check"></i> Registrar
                         </button>
                     </div>
                 </div>
-            </div>
+        </div>
 
             <br>
             <!-- Div de la tabla de Pagos extras -->
@@ -210,13 +218,14 @@
                                     <option value="" disabled selected>Seleccionar</option>
                                     <option value="uniformes">Uniformes</option>
                                     <option value="inscripcion">Inscripción</option>
+                                    <option value="comida">Comida</option>
                                     <option value="donativo">Donativo</option>
                                     <option value="otro">Otro</option>
                                 </select>
                             </td>
                             <!-- Monto -->
                             <td>
-                                <input type="number" class="form-control" id="montoUni" value="1500.00">
+                                <input type="number" class="form-control" id="montoExt" value="00.00">
                             </td>
                         </tr>
                     </tbody>
@@ -229,8 +238,8 @@
                         - Total:
                     </label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="totalUniformes" placeholder="$1,500.00" readonly>
-                        <button type="button" class="btn btn-success">
+                        <input type="text" class="form-control" id="totalExtra" placeholder="00.00" readonly>
+                        <button type="button" class="btn btn-success" id="btnRegistrarPagoExtra">
                             <i class="fas fa-check"></i> Registrar
                         </button>
                     </div>
@@ -238,6 +247,11 @@
             </div>
         </div>
     </div>
+
+    <!-- Script de JavaScript para hacer movimientos -->
+    
+    <script src="../../Assets/javaScript/alumno_otros.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 <div id="footer-container">

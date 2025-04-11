@@ -35,67 +35,76 @@
     <!-- Contenedor principal -->
     <div class="container-fluid d-flex">
 
-        <!--------------------- Cuadro izquierdo ----------------------------->
-        <!-- Título del cuadro derecho -->
-        <div class="col-6 bg-light p-4">
-            <div class="bg-light p-4 rounded shadow">
-            <h2>Identificar Alumno</h2>
-            <!-- Campo de Alumno -->
-            <div class="mb-3">
-                <label for="buscarAlumno" class="form-label">
-                    <i class="fas fa-user"></i> <!-- Ícono de usuario -->
-                    - Buscar Alumno
-                </label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="buscarAlumno" placeholder="Ingrese el nombre del alumno" required>
-                </div>
+       <!--------------------- Cuadro izquierdo ----------------------------->
+    <div class="col-6 bg-light p-4">
+    <div class="bg-light p-4 rounded shadow">
+        <h2>Identificar Alumno</h2>
+        
+        <!-- Campos de Búsqueda -->
+        <div class="mb-3">
+            <label class="form-label"><i class="fas fa-user"></i> - Buscar Alumno</label>
+            
+            <!-- Apellido Paterno -->
+            <div class="input-group mb-2">
+                <span class="input-group-text">Apellido Paterno</span>
+                <input type="text" class="form-control" id="apellidoPaternoBusqueda" placeholder="Ingresar Apellido Paterno">
             </div>
-
-            <!-- Botón de Buscar -->
-            <div class="d-grid">
-                <button type="button" class="btn btn-warning" onclick="window.location.href = '#';">
-                    <i class="fas fa-search"></i> Buscar
-                </button>
+            
+            <!-- Apellido Materno -->
+            <div class="input-group mb-2">
+                <span class="input-group-text">Apellido Materno</span>
+                <input type="text" class="form-control" id="apellidoMaternoBusqueda" placeholder="Ingresar Apellido Materno">
             </div>
-
-            <!-- Campo de Último Pago -->
-            <div class="mb-3 mt-4">
-                <label for="ultimoPago" class="form-label">
-                    <i class="fas fa-dollar-sign"></i> <!-- Ícono de dólar -->
-                    - Último Pago Realizado:
-                </label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="ultimoPago" placeholder="Último pago registrado" readonly>
-                </div>
+            
+            <!-- Nombre(s) -->
+            <div class="input-group mb-3">
+                <span class="input-group-text">Nombre(s)</span>
+                <input type="text" class="form-control" id="nombreBusqueda" placeholder="Ingresar Nombre">
             </div>
+        </div>
 
-            <!-- Campo de Año y Grupo -->
-            <div class="mb-3 mt-4">
-                <div class="row">
-                    <!-- Campo de Año (Izquierda) -->
-                    <div class="col-md-6">
-                        <label for="año" class="form-label">
-                            <i class="fas fa-calendar"></i> <!-- Ícono de calendario -->
-                            - Año:
-                        </label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="año" placeholder="Año" readonly>
-                        </div>
+        <!-- Botón de Buscar -->
+        <div class="d-grid">
+            <button type="button" class="btn btn-warning" id="btnBuscarAlumno">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+        </div>
+
+        <!-- Contenedor para resultados -->
+        <div id="resultadosBusqueda" class="mt-4"></div>
+
+        <!-- Campos de información del alumno -->
+        <div class="mb-3 mt-4">
+            <label for="ultimoPago" class="form-label">
+                <i class="fas fa-dollar-sign"></i> - Último Pago Realizado:
+            </label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="ultimoPago" placeholder="Último pago registrado" readonly>
+            </div>
+        </div>
+
+        <div class="mb-3 mt-4">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <label for="año" class="form-label">
+                        <i class="fas fa-calendar"></i> - Año:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="año" placeholder="Año" readonly>
                     </div>
-
-                    <!-- Campo de Grupo (Derecha) -->
-                    <div class="col-md-6">
-                        <label for="grupo" class="form-label">
-                            <i class="fas fa-users"></i> <!-- Ícono de grupo -->
-                            - Grupo:
-                        </label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="grupo" placeholder="Grupo" readonly>
-                        </div>
+                </div>
+                <div class="col-md-6">
+                    <label for="grupo" class="form-label">
+                        <i class="fas fa-users"></i> - Grupo:
+                    </label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="grupo" placeholder="Grupo" readonly>
                     </div>
                 </div>
             </div>
-
+        </div>
+    
             <!-- Botón de Nuevo Alumno -->
             <div class="d-grid">
                 <button type="button" class="btn btn-primary" onclick="window.location.href = '#';">
@@ -171,17 +180,25 @@
             </div>
 
             <!-- Botón de Confirmar Pago -->
-            <div class="d-grid">
-                <button type="submit" class="btn btn-success">
-                    <i class="fas fa-check-circle"></i> Confirmar Pago
-                </button>
-            </div>
+        <div class="d-grid">
+            <button type="button" id="btnConfirmarPago" class="btn btn-success" disabled>
+                <i class="fas fa-check-circle"></i> Confirmar Pago
+            </button>
+        </div>
         </div>
     </div>
 
+    <!-- DIV PADRE DE IZQUIERDO Y DERECHO -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    
+
+    <!-- Script de JavaScript para hacer movimientos -->
+    <script src="../Assets/javaScript/alumno_colegiatura.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 <div id="footer-container">
