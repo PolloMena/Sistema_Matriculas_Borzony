@@ -40,3 +40,47 @@
     background-color: #007bff;
     border-radius: 4px;
 }
+
+/* Carrusel */
+#carruselUsuarios {
+    scrollbar-width: thin; /* Para Firefox */
+    scrollbar-color: #888 transparent;
+}
+
+/* Scrollbar para Chrome/Safari */
+#carruselUsuarios::-webkit-scrollbar {
+    height: 6px;
+}
+#carruselUsuarios::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3px;
+}
+
+/* Tarjetas */
+.tarjeta-usuario {
+    transition: transform 0.3s;
+}
+.tarjeta-usuario:hover {
+    transform: translateY(-5px);
+}
+
+/* Flechas de navegación */
+#btnAnterior, #btnSiguiente {
+    opacity: 0.7;
+    transition: all 0.3s;
+    z-index: 1;
+}
+#btnAnterior:hover, #btnSiguiente:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .tarjeta-usuario {
+        width: 85vw !important;
+    }
+    #btnAnterior, #btnSiguiente {
+        display: none;
+    }
+}

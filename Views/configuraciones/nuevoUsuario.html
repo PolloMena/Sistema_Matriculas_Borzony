@@ -15,6 +15,9 @@
 
     <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -59,9 +62,9 @@
                                     <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
                                     <select class="form-select" id="rol" name="rol" required>
                                         <option value="" selected disabled>Seleccione un rol</option>
-                                        <option value="administrativo">Administrativo</option>
-                                        <option value="secretaria">Secretaria</option>
-                                        <option value="otro">Otro</option>
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Maestro">Maestro</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,8 +96,9 @@
     
                             <!-- Botón Confirmar -->
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success" id="btnSubmit">
                                     <i class="fas fa-check-circle me-2"></i>Confirmar
+                                    <span id="spinner" class="spinner-border spinner-border-sm ms-2 d-none"></span>
                                 </button>
                             </div>
                         </form>
@@ -139,26 +143,71 @@
         });
     });
     
-    // Validación básica del formulario
-    document.getElementById('formUsuario').addEventListener('submit', function(e) {
+        document.getElementById('formUsuario').addEventListener('submit', async function(e) {
         e.preventDefault();
+        
+        // Obtener valores
+        const usuario = document.getElementById('usuario').value.trim();
+        const rol = document.getElementById('rol').value;
         
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         
+        // Validaciones
         if (password !== confirmPassword) {
-            alert('Las contraseñas no coinciden');
+            Swal.fire('Error', 'Las contraseñas no coinciden', 'error');
             return;
         }
         
         if (password.length < 5) {
-            alert('La contraseña debe tener al menos 8 caracteres');
+            Swal.fire('Error', 'La contraseña debe tener al menos 5 caracteres', 'error');
             return;
         }
         
-        // Aquí iría tu lógica para enviar el formulario
-        alert('Usuario agregado correctamente');
-        this.reset();
+        if (!usuario || !rol) {
+            Swal.fire('Error', 'Complete todos los campos', 'error');
+            return;
+        }
+
+        // Confirmación con SweetAlert
+        const { isConfirmed } = await Swal.fire({
+            title: '¿Crear nuevo usuario?',
+            html: `<b>Usuario:</b> ${usuario}<br><b>Rol:</b> ${rol}`,
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar'
+        });
+
+        if (!isConfirmed) return;
+
+        try {
+            // Enviar datos al servidor
+            
+            const response = await fetch('../../Assets/Php/registrar_usuario.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    usuario,
+                    rol,
+                    password
+                })
+            });
+            
+            const resultado = await response.json();
+            
+            if (resultado.success) {
+                Swal.fire('¡Éxito!', 'Usuario registrado correctamente', 'success');
+                this.reset();
+            } else {
+                Swal.fire('Error', resultado.error || 'Error al registrar usuario', 'error');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Swal.fire('Error', 'Error de conexión', 'error');
+        }
     });
     </script>
 

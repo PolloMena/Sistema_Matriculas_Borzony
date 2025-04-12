@@ -12,6 +12,9 @@
     <!-- ICONO DE LA PAGINA WEB-->
     <link rel="icon" href="../Assets/img/logo2.png" type="image/x-icon">
     <link rel="shortcut icon" href="../Assets/img/logo2.png" type="image/x-icon">
+    <!-- Asegúrate de tener SweetAlert2 en tu <head> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="fondo">
@@ -22,10 +25,18 @@
 
     <!-- Contenedor principal -->
     <div class="main-container">
+        
         <!-- Contenedor del formulario de inicio de sesión -->
         <div class="login-container">
             <div class="login-box">
                 <h1 class="text-center mb-4">Inicio de Sesión</h1>
+                
+                <!-- Contenedor de notificaciones (arriba del formulario) -->
+                <div id="notificacion" class="notificacion-error" style="display: none;">
+                    <div class="icono-error">!</div>
+                    <div class="mensaje-notificacion"></div>
+                </div>
+
                 <form id="loginForm" action="../Assets/Php/login.php" method="POST">
                     <!-- Campo de Usuario -->
                     <div class="mb-3">
@@ -61,6 +72,57 @@
     
 </body>
 
-
+<script>
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Mostrar loader (opcional)
+        const btnSubmit = this.querySelector('button[type="submit"]');
+        btnSubmit.disabled = true;
+        btnSubmit.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verificando...';
+    
+        try {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+    
+            if (data.success) {
+                // Redirigir si es exitoso
+                window.location.href = 'index.html';
+            } else {
+                // Mostrar error bonito
+                let mensaje = '';
+                if (data.error === 'contraseña') {
+                    mensaje = 'Contraseña incorrecta';
+                } else if (data.error === 'usuario') {
+                    mensaje = 'Usuario no encontrado';
+                } else {
+                    mensaje = 'Error inesperado: ' + data.error;
+                }
+    
+                Swal.fire({
+                    title: mensaje,
+                    text: 'Intente nuevamente',
+                    icon: 'error',
+                    confirmButtonText: 'Entendido',
+                    backdrop: `
+                        rgba(0, 0, 0, 0.1)
+                        url("/img/nyan-cat.gif")
+                        center top
+                        no-repeat
+                    `
+                });
+            }
+        } catch (error) {
+            Swal.fire('Error', 'No se pudo conectar al servidor', 'error');
+        } finally {
+            btnSubmit.disabled = false;
+            btnSubmit.innerHTML = 'Iniciar sesión';
+        }
+    });
+    </script>
 
 </html>

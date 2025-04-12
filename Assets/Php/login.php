@@ -1,25 +1,35 @@
 <?php
 session_start();
-
 include 'conexion.php';
-// Obtener datos del formulario
+
 $usuario = $_POST['usuario'];
-$contrasena = $_POST['contrasena'];
+$contrasena_ingresada = $_POST['contrasena'];
 
-// Consulta SQL (usa prepared statements para seguridad)
-$sql = "SELECT * FROM usuarios WHERE usuario = ? AND contrasena = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $usuario, $contrasena);
-$stmt->execute();
-$result = $stmt->get_result();
+header('Content-Type: application/json'); // Importante para JSON
 
-if ($result->num_rows > 0) {
-    // Login exitoso
-    $_SESSION['usuario'] = $usuario;
-    header("Location: ../../Views/index.html"); // Redirige a la página principal
-} else {
-    // Login fallido
-    echo "<script>alert('Usuario o contraseña incorrectos'); window.history.back();</script>";
+try {
+    $sql = "SELECT * FROM usuarios WHERE usuario = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $fila = $result->fetch_assoc();
+        
+        if (password_verify($contrasena_ingresada, $fila['Contrasena'])) {
+            $_SESSION['usuario'] = $usuario;
+            $_SESSION['rol'] = $fila['Rol'];
+            echo json_encode(['success' => true]);
+            exit();
+        } else {
+            echo json_encode(['success' => false, 'error' => 'contraseña']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'error' => 'usuario']);
+    }
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'error' => $e->getMessage()]);
 }
 
 $stmt->close();

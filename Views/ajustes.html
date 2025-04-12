@@ -44,126 +44,19 @@
         <h2 class="text-center mb-4">Ajustes del Sistema</h2>
 
         <!-- Contenedor de tarjetas con desplazamiento horizontal -->
-        <div class="scroll-container">
-            <!-- Tarjeta de Usuario 1 -->
-            <div class="user-card">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="../Assets/img/ajustes/ajustes.jpg" alt="Usuario 1" class="img-fluid">
-                    <div>
-                        <h5>Adriana Elizabeth</h5>
-                        <p class="text-muted">Directora</p>
-                    </div>
-                </div>
-                <!-- Campos para nueva contraseña -->
-                <div class="mb-3">
-                    <label for="nuevaContrasena1" class="form-label">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="nuevaContrasena1" placeholder="Ingrese la nueva contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="repetirContrasena1" class="form-label">Repetir Contraseña</label>
-                    <input type="password" class="form-control" id="repetirContrasena1" placeholder="Repita la nueva contraseña">
-                </div>
-                <!-- Botón para guardar -->
-                <button type="button" class="btn btn-warning w-100">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
+        <div class="position-relative py-4">
+            <!-- Contenedor principal -->
+            <div id="carruselUsuarios" class="d-flex overflow-auto py-3" style="scroll-snap-type: x mandatory;">
+            <!-- Tarjeta de Usuario  -->
+                
             </div>
 
-            <!-- Tarjeta de Usuario 2 -->
-            <div class="user-card">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="../Assets/img/ajustes/ajustes.jpg" alt="Usuario 2" class="img-fluid">
-                    <div>
-                        <h5>Maestra Gabriela</h5>
-                        <p class="text-muted">Personal Administrativo</p>
-                    </div>
-                </div>
-                <!-- Campos para nueva contraseña -->
-                <div class="mb-3">
-                    <label for="nuevaContrasena2" class="form-label">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="nuevaContrasena2" placeholder="Ingrese la nueva contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="repetirContrasena2" class="form-label">Repetir Contraseña</label>
-                    <input type="password" class="form-control" id="repetirContrasena2" placeholder="Repita la nueva contraseña">
-                </div>
-                <!-- Botón para guardar -->
-                <button type="button" class="btn btn-warning w-100">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-            </div>
-
-            <!-- Tarjeta de Usuario 3 -->
-            <div class="user-card">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="../Assets/img/ajustes/ajustes.jpg" alt="Usuario 3" class="img-fluid">
-                    <div>
-                        <h5>Francisco Javier</h5>
-                        <p class="text-muted">Administrador</p>
-                    </div>
-                </div>
-                <!-- Campos para nueva contraseña -->
-                <div class="mb-3">
-                    <label for="nuevaContrasena3" class="form-label">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="nuevaContrasena3" placeholder="Ingrese la nueva contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="repetirContrasena3" class="form-label">Repetir Contraseña</label>
-                    <input type="password" class="form-control" id="repetirContrasena3" placeholder="Repita la nueva contraseña">
-                </div>
-                <!-- Botón para guardar -->
-                <button type="button" class="btn btn-warning w-100">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-            </div>
-
-            <!-- Tarjeta de Usuario 4 -->
-            <div class="user-card">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="../Assets/img/ajustes/ajustes.jpg" alt="Usuario 4" class="img-fluid">
-                    <div>
-                        <h5>Fulanito 1</h5>
-                        <p class="text-muted">Personal Administrativo</p>
-                    </div>
-                </div>
-                <!-- Campos para nueva contraseña -->
-                <div class="mb-3">
-                    <label for="nuevaContrasena3" class="form-label">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="nuevaContrasena3" placeholder="Ingrese la nueva contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="repetirContrasena3" class="form-label">Repetir Contraseña</label>
-                    <input type="password" class="form-control" id="repetirContrasena3" placeholder="Repita la nueva contraseña">
-                </div>
-                <!-- Botón para guardar -->
-                <button type="button" class="btn btn-warning w-100">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-            </div>
-
-            <!-- Tarjeta de Usuario 5 -->
-            <div class="user-card">
-                <div class="d-flex align-items-center mb-3">
-                    <img src="../Assets/img/ajustes/ajustes.jpg" alt="Usuario 5" class="img-fluid">
-                    <div>
-                        <h5>Fulanito 2</h5>
-                        <p class="text-muted">Personal Administrativo</p>
-                    </div>
-                </div>
-                <!-- Campos para nueva contraseña -->
-                <div class="mb-3">
-                    <label for="nuevaContrasena3" class="form-label">Nueva Contraseña</label>
-                    <input type="password" class="form-control" id="nuevaContrasena3" placeholder="Ingrese la nueva contraseña">
-                </div>
-                <div class="mb-3">
-                    <label for="repetirContrasena3" class="form-label">Repetir Contraseña</label>
-                    <input type="password" class="form-control" id="repetirContrasena3" placeholder="Repita la nueva contraseña">
-                </div>
-                <!-- Botón para guardar -->
-                <button type="button" class="btn btn-warning w-100">
-                    <i class="fas fa-save"></i> Guardar Cambios
-                </button>
-            </div>
+            <button id="btnAnterior" class="btn btn-dark position-absolute start-0 top-50 translate-middle-y">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="btnSiguiente" class="btn btn-dark position-absolute end-0 top-50 translate-middle-y">
+                <i class="fas fa-chevron-right"></i>
+            </button>
 
         </div>
     </div>
@@ -182,6 +75,8 @@
         </button>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Assets/javaScript/generar_tarjetas.js"></script>
 </body>
 
 <!-- Contenedor para el footer -->
@@ -198,4 +93,5 @@
     </script>
 
 </div>
+
 </html>
