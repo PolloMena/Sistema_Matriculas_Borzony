@@ -1,0 +1,36 @@
+/* Mejorar apariencia de las tablas */
+.tabla-pagos {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.tabla-pagos thead tr {
+    background-color: #f1f5f9;
+}
+
+.tabla-pagos tbody tr:hover {
+    background-color: #eef6fb;
+}
+
+.tabla-pagos th, .tabla-pagos td {
+    vertical-align: middle;
+    padding: 12px;
+    font-size: 15px;
+}
+
+/* Títulos */
+.titulo-tabla {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: #343a40;
+}
+
+.separacion{
+    margin-right: 20px;
+    margin-inline-start: 20px;
+}

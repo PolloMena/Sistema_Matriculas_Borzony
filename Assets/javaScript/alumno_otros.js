@@ -248,6 +248,10 @@ async function registrarPagos() {
         if (resultado.success) {
             mostrarMensaje(`Pagos registrados exitosamente: ${resultado.registrados} de ${pagosAregistrar.length}`, 'success');
             // Actualizar la tabla con los nuevos pagos
+
+            // -------------------------------------
+            // -------------------------------------
+            // AQUI MODIFICAR EL MOSTRAR MENSAJE
             buscarAlumnoParaAutocompletar();
         } else {
             mostrarMensaje(resultado.error || 'Error al registrar pagos', 'danger');

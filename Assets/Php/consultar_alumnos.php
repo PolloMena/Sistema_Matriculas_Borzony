@@ -50,19 +50,33 @@ try {
     while ($row = $result->fetch_assoc()) {
         $idMatricula = $row['ID_Matricula'];
 
-        // Consultar el último pago de ese alumno
+        // Consulta corregida (ordena por año + mes numérico)
         $stmtPago = $conn->prepare("SELECT Mes, Ano FROM Colegiatura 
                                     WHERE FK_Matricula = ? 
-                                    ORDER BY Fecha_Colegiatura DESC LIMIT 1");
+                                    ORDER BY Ano DESC, 
+                                    CASE Mes
+                                        WHEN 'Enero' THEN 1
+                                        WHEN 'Febrero' THEN 2
+                                        WHEN 'Marzo' THEN 3
+                                        WHEN 'Abril' THEN 4
+                                        WHEN 'Mayo' THEN 5
+                                        WHEN 'Junio' THEN 6
+                                        WHEN 'Julio' THEN 7
+                                        WHEN 'Agosto' THEN 8
+                                        WHEN 'Septiembre' THEN 9
+                                        WHEN 'Octubre' THEN 10
+                                        WHEN 'Noviembre' THEN 11
+                                        WHEN 'Diciembre' THEN 12
+                                    END DESC
+                                    LIMIT 1");
         $stmtPago->bind_param("i", $idMatricula);
         $stmtPago->execute();
         $resPago = $stmtPago->get_result();
 
         $ultimoPago = "Sin pagos registrados";
         if ($pago = $resPago->fetch_assoc()) {
-            $ultimoPago = $pago['Mes'] . ' ' . $pago['Ano'];
+            $ultimoPago = $pago['Mes'] . ' ' . $pago['Ano']; // Formato: "Marzo 2025"
         }
-
         // Agregar info del alumno + último pago
         $alumnos[] = [
             'ID_Matricula' => $row['ID_Matricula'],
