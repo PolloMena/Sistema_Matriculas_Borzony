@@ -1,6 +1,6 @@
 // Función principal para cargar y mostrar los datos
 function cargarDatosAlumno(idAlumno) {
-    fetch(`../../assets/php/perfil_alumno.php?id=${idAlumno}`)
+    fetch(`../../php/perfil_alumno.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();
@@ -24,20 +24,24 @@ function actualizarDatosAlumno(alumno) {
     const contenedor = document.querySelector('#datos-alumno');
     const campos = contenedor.querySelectorAll('.form-control.bg-light');
 
-    if (campos.length >= 5) {  // Asegurar que existan los campos
+    if (campos.length >= 6) {  // Asegurar que existan los campos
         campos[0].textContent = alumno.Apellido_PAT || 'N/A';
         campos[1].textContent = alumno.Apellido_MAT || 'N/A';
         campos[2].textContent = alumno.Nombre || 'N/A';
         campos[3].textContent = alumno.Fecha_Nac_Formateada || '00/00/00';
         campos[4].textContent = alumno.CURP || 'N/A';
+        campos[5].textContent = alumno.Ano || 0;
+        campos[6].textContent = alumno.Grupo || 'Null';
     }
 
     // Campos editables (selects)
     const selectAnio = document.getElementById('anioEscolar');
     const selectGrupo = document.getElementById('grupo');
 
-    if (selectAnio) selectAnio.value = alumno.Ano || 0;
-    if (selectGrupo) selectGrupo.value = alumno.Grupo || 'Null';
+    selectAnio.value = alumno.Ano || 0;
+    selectGrupo.value = alumno.Grupo || 'Null';
+    //if (selectAnio) selectAnio.value = alumno.Ano || 0;
+    //if (selectGrupo) selectGrupo.value = alumno.Grupo || 'Null';
 }
 
 
@@ -77,7 +81,7 @@ function actualizarFacturacion(facturacion) {
 // Función para cargar y mostrar los pagos del alumno
 function cargarPagosAlumno(idAlumno) {
     //console.log('Actualizado');
-    fetch(`../../assets/php/perfil_pago.php?id=${idAlumno}`)
+    fetch(`../../php/perfil_pago.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();

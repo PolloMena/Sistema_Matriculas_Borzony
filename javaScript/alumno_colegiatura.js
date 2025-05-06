@@ -26,7 +26,7 @@ async function buscarAlumnoParaAutocompletar() {
             
             mostrarMensaje('Buscando alumnos...', 'info');
             
-            const response = await fetch('../Assets/Php/consultar_alumnos.php', {
+            const response = await fetch('../Php/consultar_alumnos.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -189,7 +189,7 @@ async function enviarPagoAlServidor(pagoData) {
             fecha: pagoData.fecha_registro
         };
 
-        const response = await fetch('../Assets/Php/pago_colegiatura.php', {
+        const response = await fetch('../Php/pago_colegiatura.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

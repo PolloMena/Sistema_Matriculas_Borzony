@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('../Assets/Php/informacion_tb.php')
+    fetch('../Php/informacion_tb.php')
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantilla</title>
+    <title>Alumno</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hoja de estilos personalizada -->
-    <link rel="stylesheet" href="../../Assets/index.css">
-    <link rel="stylesheet" href="../../Assets/Css/perfilAl.css">
+    <link rel="stylesheet" href="../../Css/index.css">
+    <link rel="stylesheet" href="../../Css/perfilAl.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ICONO DE LA PAGINA WEB-->
@@ -92,27 +92,15 @@
                     
                     <!-- Campos editables -->
                     <div class="mb-3">
-                        <label for="anioEscolar" class="form-label">Año Escolar</label>
-                        <select class="form-select" id="anioEscolar">
-                            <option value="0">No Asignado</option>
-                            <option value="1">1°</option>
-                            <option value="2">2°</option>
-                            <option value="3">3°</option>
-                            <option value="4">4°</option>
-                            <option value="5">5°</option>
-                            <option value="6">6°</option>
-                        </select>
+                        <label class="form-label">Año Escolar</label>
+                        <div class="form-control bg-light" id="anioEscolar">No Asignado</div>
+                        
                     </div>
                     
                     <div class="mb-3">
-                        <label for="grupo" class="form-label">Grupo</label>
-                        <select class="form-select" id="grupo">
-                            <option value="Null">No Asignado</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="D">D</option>
-                        </select>
+                        <label class="form-label">Grupo</label>
+                        <div class="form-control bg-light" id="grupo">No Asignado</div>
+                        
                     </div>
                 </div>
             </div>
@@ -215,7 +203,7 @@
 
     </div>
 
-    <script src="../../Assets/javaScript/perfil_alumno.js"></script>
+    <script src="../../javaScript/perfil_alumno.js"></script>
 </body>
 
 <!-- Contenedor para el footer -->

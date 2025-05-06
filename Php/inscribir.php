@@ -106,7 +106,7 @@ try {
     echo "<script>
         localStorage.setItem('notification', JSON.stringify({
             type: 'success',
-            message: 'Registro exitoso - Matrícula: $matricula_id'
+            message: 'Registro exitoso - Bienvenido a Borzony!!!'
         }));
         window.location.href = '" . $_SERVER['HTTP_REFERER'] . "';
     </script>";
