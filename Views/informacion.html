@@ -88,10 +88,20 @@
             </h4>
 
             <!-- Formulario de Búsqueda -->
-            <form>
+            <form id="formularioBusqueda">
                 <!-- Campo de Nombres -->
                 <div class="mb-3">
-                    <label for="nombresBusqueda" class="form-label">Nombres</label>
+                    <label for="apellidoPATBusqueda" class="form-label">Apellido Paterno</label>
+                    <input type="text" class="form-control" id="apellidoPATBusqueda" placeholder="Ingrese apellido paterno">
+                </div>
+
+                <div class="mb-3">
+                    <label for="apellidoMATBusqueda" class="form-label">Apellido Materno</label>
+                    <input type="text" class="form-control" id="apellidoMATBusqueda" placeholder="Ingrese apellido materno">
+                </div>
+
+                <div class="mb-3">
+                    <label for="nombresBusqueda" class="form-label">Nombre(s)</label>
                     <input type="text" class="form-control" id="nombresBusqueda" placeholder="Ingrese los nombres">
                 </div>
 
@@ -155,12 +165,7 @@
                     </select>
                 </div>
 
-                <!-- Botón de Buscar -->
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-search"></i> Buscar
-                    </button>
-                </div>
+                
             </form>
         </div>
 

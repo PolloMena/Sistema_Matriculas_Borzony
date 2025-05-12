@@ -1,5 +1,6 @@
 // Función principal para cargar y mostrar los datos
 function cargarDatosAlumno(idAlumno) {
+    
     fetch(`../../php/perfil_alumno.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
@@ -136,7 +137,7 @@ function generarTablaColegiaturas(pagos) {
     // Crear título de tabla
     const titulo = document.createElement('h4');
     titulo.className = 'titulo-tabla';
-    titulo.textContent = 'Pagos de Colegiatura';
+    titulo.textContent = 'Pago Mensual';
     contenedor.appendChild(titulo);
     
     // Crear tabla
@@ -241,8 +242,6 @@ function generarTablaOtrosPagos(pagos) {
     contenedor.appendChild(tabla);
 }
 
-
-
 // Esperar a que el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
     // Obtener el ID del alumno de la URL
@@ -253,7 +252,129 @@ document.addEventListener('DOMContentLoaded', function() {
         cargarDatosAlumno(idAlumno);
         cargarPagosAlumno(idAlumno);
     } else {
-        console.error('No se encontró ID de alumno en la URL');
+        console.error('No se encontró el perfil del alumno');
         alert('Error: No se puede identificar al alumno');
     }
+
+    // Botón de baja
+    const btnBaja = document.querySelector('.btn-danger');
+    if (btnBaja) {
+        btnBaja.addEventListener('click', function() {
+            confirmarBajaAlumno(idAlumno);
+        });
+    }
 });
+
+async function confirmarBajaAlumno(idAlumno) {
+    // Paso 1: Solicitar credenciales
+    const { value: credenciales } = await Swal.fire({
+        title: 'Autenticación requerida',
+        html:
+            '<input id="swal-input-usuario" class="swal2-input" placeholder="Usuario">' +
+            '<input id="swal-input-password" class="swal2-input" placeholder="Contraseña" type="password">',
+        focusConfirm: false,
+        showCancelButton: true,
+        confirmButtonText: 'Verificar',
+        cancelButtonText: 'Cancelar',
+        preConfirm: () => {
+            return {
+                usuario: document.getElementById('swal-input-usuario').value,
+                password: document.getElementById('swal-input-password').value
+            }
+        }
+    });
+    
+    if (!credenciales) return;
+    
+    // Paso 2: Verificar credenciales
+    try {
+        Swal.fire({
+            title: 'Verificando credenciales...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+        
+        const response = await fetch('../../Php/verificar_baja.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                usuario: credenciales.usuario,
+                password: credenciales.password
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (!data.success) {
+            throw new Error(data.error || 'Credenciales incorrectas');
+        }
+        
+        // Verificar rol permitido
+        const rolesPermitidos = ['Administrador', 'Directora'];
+        if (!rolesPermitidos.includes(data.rol)) {
+            throw new Error('Tu rol no tiene permisos para esta acción');
+        }
+        
+        // Paso 3: Confirmación final de baja
+        const confirmacion = await Swal.fire({
+            title: '¿Confirmar baja del alumno?',
+            html: `Usuario autorizado: <b>${data.usuario}</b> (${data.rol})<br><br>
+                   Esta acción cambiará el estatus del alumno a <b>INACTIVO</b>`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Confirmar baja',
+            cancelButtonText: 'Cancelar'
+        });
+        
+        if (confirmacion.isConfirmed) {
+            // Proceder con la baja
+            await ejecutarBajaAlumno(idAlumno, data.id_usuario);
+        }
+        
+    } catch (error) {
+        Swal.fire('Error', error.message, 'error');
+        console.error('Error:', error);
+    }
+}
+
+async function ejecutarBajaAlumno(idAlumno, idUsuarioAutorizador) {
+    try {
+        Swal.fire({
+            title: 'Procesando baja...',
+            allowOutsideClick: false,
+            didOpen: () => Swal.showLoading()
+        });
+        
+        const response = await fetch('../../Php/alumnos_baja.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 
+                id: idAlumno,
+                id_autorizador: idUsuarioAutorizador 
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            Swal.fire({
+                title: '¡Baja exitosa!',
+                text: data.message,
+                icon: 'success',
+                willClose: () => {
+                    window.location.href = '../informacion.html';
+                }
+            });
+        } else {
+            throw new Error(data.error || 'Error al dar de baja');
+        }
+    } catch (error) {
+        throw error;
+    }
+}

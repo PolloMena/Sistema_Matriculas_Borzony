@@ -51,8 +51,8 @@
 
 /* Estilos para el cuadro de la imagen */
 .image-box {
-    width: 90%;
-    max-width: 320px;
+    width: 100%;
+    max-width: 310px;
     border-radius: 10px;
     overflow: hidden; /* Para que la imagen no se salga del borde */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

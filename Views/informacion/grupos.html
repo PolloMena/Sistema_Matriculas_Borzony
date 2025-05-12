@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Hoja de estilos personalizada -->
     <link rel="stylesheet" href="../../Css/index.css">
-
+    <link rel="stylesheet" href="../../Css/grupos.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- ICONO DE LA PAGINA WEB-->
     <link rel="icon" href="../../Assets/img/logo2.png" type="image/x-icon">
@@ -16,6 +16,7 @@
 
     <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -35,11 +36,167 @@
 
     </div>
 
-    <br>
-    <div id="contenedor" class="card shadow">
-        <h1 class="text-center">Proximamente</h1>
+    <div class="container-fluid p-4">
+        <!-- Encabezado principal -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h1 class="text-primary">
+                    <i class="fas fa-users-class me-2"></i>Lista de Grupos
+                </h1>
+            </div>
+        </div>
+    
+        <!-- Sección de alumnos sin asignar -->
+        <div class="card shadow-sm mb-5">
+            <div class="card-header bg-light">
+                <h3 class="mb-0">
+                    <i class="fas fa-user-clock me-2"></i>Alumnos sin Asignar
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped" id="alumnosSinAsignar">
+                        <thead class="table-primary">
+                            <tr>
+                                <th width="5%">
+                                    <input type="checkbox" class="form-check-input" id="selectAllUnassigned">
+                                </th>
+                                <th width="15%">Matrícula</th>
+                                <th width="40%">Nombre Completo</th>
+                                <th width="20%">Año</th>
+                                <th width="20%">Grupo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Ejemplo de filas (serán dinámicas) -->
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input select-student"></td>
+                                <td>00</td>
+                                <td>Sin Alumnos Pendientes</td>
+                                <td><span class="badge bg-warning">Sin asignar</span></td>
+                                <td><span class="badge bg-warning">Sin asignar</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Sección de búsqueda por grupos -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-light">
+                        <h3 class="mb-0">
+                            <i class="fas fa-search me-2"></i>Búsqueda por Grupos
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filtros de búsqueda -->
+                        <div class="row mb-4 g-3">
+                            <div class="col-md-3">
+                                <label class="form-label">Año Escolar</label>
+                                <select class="form-select" id="AñoBusqueda">
+                                    <option value="" selected>Seleccione Año</option>
+                                    <option value="1">1°</option>
+                                    <option value="2">2°</option>
+                                    <option value="3">3°</option>
+                                    <option value="4">4°</option>
+                                    <option value="5">5°</option>
+                                    <option value="6">6°</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">Grupo</label>
+                                <select class="form-select" id="grupoBusqueda">
+                                    <option value="" selected>Seleccione grupo</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" id="btnBuscarGrupo">
+                                    <i class="fas fa-search me-2"></i>Buscar
+                                </button>
+                            </div>
+                        </div>
+    
+                        <!-- Resultados de búsqueda -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-striped">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th width="5%">
+                                            <input type="checkbox" class="form-check-input" id="selectAllAssigned">
+                                        </th>
+                                        <th width="15%">Matrícula</th>
+                                        <th width="40%">Nombre Completo</th>
+                                        <th width="20%">Año</th>
+                                        <th width="20%">Grupo</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultadosGrupo">
+                                    <!-- Ejemplo de filas (serán dinámicas) -->
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4 text-muted">
+                                            <i class="fa-solid fa-puzzle-piece me-2"></i> No se ha ingresado una busqueda...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Panel de asignación de grupos (fixed en desktop) -->
+        <div class="card shadow-sm position-fixed end-0 top-50 translate-middle-y me-4" style="width: 300px; z-index: 1000;">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">
+                    <i class="fas fa-people-arrows me-2"></i>Asignar Grupo
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <label class="form-label">Grado Escolar</label>
+                    <select class="form-select" id="gradoAsignar">
+                        <option value="" selected>Seleccione grado</option>
+                        <option value="1">1°</option>
+                        <option value="2">2°</option>
+                        <option value="3">3°</option>
+                        <option value="4">4°</option>
+                        <option value="5">5°</option>
+                        <option value="6">6°</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Grupo</label>
+                    <select class="form-select" id="grupoAsignar">
+                        <option value="" selected>Seleccione grupo</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                    </select>
+                </div>
+                <div class="d-grid">
+                    <button class="btn btn-success" id="btnAsignarGrupo">
+                        <i class="fas fa-save me-2"></i>Asignar Grupo
+                    </button>
+                </div>
+                <div class="mt-3 text-center text-muted small">
+                    <i class="fas fa-info-circle me-2"></i>
+                    Seleccione alumnos de las tablas y asigne nuevo grupo
+                </div>
+            </div>
+        </div>
     </div>
+    
 
+    <script src="../../javaScript/listas_grupos.js"></script>
 </body>
 
 <!-- Contenedor para el footer -->

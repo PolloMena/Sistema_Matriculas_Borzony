@@ -11,7 +11,7 @@ try {
     // Construir consulta principal
     $sql = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo 
             FROM Alumnos 
-            WHERE 1=1";
+            WHERE 1=1 AND Estatus = 1";
     $types = '';
     $params = [];
 

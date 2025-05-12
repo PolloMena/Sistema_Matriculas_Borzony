@@ -16,7 +16,7 @@ try {
         $nombre = isset($_POST['nombre']) ? $conn->real_escape_string($_POST['nombre']) : '';
 
         // Construir consulta SQL segura para alumnos
-        $sqlAlumnos = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM Alumnos WHERE 1=1";
+        $sqlAlumnos = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM Alumnos WHERE 1=1 AND Estatus = 1";
         $types = '';
         $params = [];
 
@@ -54,7 +54,7 @@ try {
         $resultAlumnos = $stmtAlumnos->get_result();
         $alumnos = $resultAlumnos->fetch_all(MYSQLI_ASSOC);
 
-        // 🔽 AGREGAR el campo de Último Pago de colegiatura
+        // AGREGAR el campo de Último Pago de colegiatura
         foreach ($alumnos as &$alumno) {
             $idMatricula = $alumno['ID_Matricula'];
 
@@ -71,7 +71,7 @@ try {
             $alumno['Ultimo_Pago'] = $pago ? $pago['Mes'] . ' ' . $pago['Ano'] : 'Sin registro';
         }
 
-        // 🔽 Consulta de pagos de materiales
+        //  Consulta de pagos de materiales
         $pagos = [];
         if (count($alumnos) > 0) {
             $matricula = $alumnos[0]['ID_Matricula']; // Tomamos el primer alumno

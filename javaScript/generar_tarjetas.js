@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 1. Obtener usuarios desde PHP
         const response = await fetch('../Php/obtener_usuarios.php');
         const usuarios = await response.json();
-        console.log(usuarios)
+        
         // 2. Generar tarjetas
         const carrusel = document.getElementById('carruselUsuarios');
         

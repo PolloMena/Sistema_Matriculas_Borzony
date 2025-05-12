@@ -125,16 +125,19 @@ function validarYPrepararPago() {
 
     if (isNaN(cantidad) || cantidad <= 0) {
         mostrarMensajePago('Ingrese una cantidad válida mayor a 0', 'danger');
+        Swal.fire('Error', 'Cantidad no valida', 'warning');
         return;
     }
 
     if (!mes) {
         mostrarMensajePago('Seleccione un mes', 'danger');
+        Swal.fire('Error', 'Mes no valido', 'warning');
         return;
     }
 
     if (!año) {
         mostrarMensajePago('Seleccione un año', 'danger');
+        Swal.fire('Error', 'Año no valido', 'warning');
         return;
     }
 
@@ -208,7 +211,7 @@ async function enviarPagoAlServidor(pagoData) {
             <strong>Pago registrado exitosamente</strong><br>
             
         `, 'success');
-
+        Swal.fire('¡Éxito!', 'Pago registrado correctamente', 'success');
         // Opcional: Limpiar formulario después de éxito
         document.getElementById('cantidadPago').value = '';
         document.getElementById('mesPago').selectedIndex = 0;
@@ -216,7 +219,8 @@ async function enviarPagoAlServidor(pagoData) {
 
     } catch (error) {
         console.error('Error al registrar pago:', error);
-        mostrarMensajePago(`Error: ${error.message}`, 'danger');
+        mostrarMensajePago(`Error en el pago`, 'danger');
+        Swal.fire('Error', 'Error al registrar el pago, intente nuevamente', 'error');
     }
 }
 

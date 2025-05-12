@@ -30,6 +30,8 @@ async function buscarAlumnoParaAutocompletar() {
 
     if (!apellidoPaterno && !apellidoMaterno && !nombre) {
         mostrarMensaje('Ingrese al menos un criterio', 'warning');
+        Swal.fire('Error', 'Busqueda no valida', 'warning');
+        console.log('Actualizado');
         return;
     }
 
@@ -189,7 +191,7 @@ async function registrarPagos() {
     
     // Validar que hay un alumno seleccionado
     if (!alumnoID) {
-        mostrarMensaje('Primero busque y seleccione un alumno', 'warning');
+        Swal.fire('Error', 'Primero identifique un alumno', 'warning');
         return;
     }
 
@@ -210,6 +212,7 @@ async function registrarPagos() {
 
     if (pagosAregistrar.length === 0) {
         mostrarMensaje('No hay pagos válidos para registrar', 'warning');
+        Swal.fire('Error', 'No hay pagos validos para registrar', 'warning');
         return;
     }
 
@@ -229,7 +232,7 @@ async function registrarPagos() {
     }
 
     try {
-        mostrarMensaje('Registrando pagos...', 'info');
+        
         
         const response = await fetch('../../Php/otros_pagos.php', {
             method: 'POST',
@@ -246,7 +249,7 @@ async function registrarPagos() {
         const resultado = await response.json();
         
         if (resultado.success) {
-            mostrarMensaje(`Pagos registrados exitosamente: ${resultado.registrados} de ${pagosAregistrar.length}`, 'success');
+            Swal.fire('¡Éxito!', 'Pago registrado correctamente', 'success');
             // Actualizar la tabla con los nuevos pagos
 
             // -------------------------------------
@@ -280,7 +283,7 @@ document.getElementById('btnRegistrarPagoExtra').addEventListener('click', regis
 async function registrarPagoExtra() {
     // Validar alumno seleccionado
     if (!alumnoID) {
-        mostrarMensaje('Primero busque y seleccione un alumno', 'warning');
+        Swal.fire('Error', 'Primero identifique un alumno', 'warning');
         return;
     }
 
@@ -292,7 +295,7 @@ async function registrarPagoExtra() {
 
     // Validaciones
     if (!fecha || !concepto || isNaN(monto) || monto <= 0) {
-        mostrarMensaje('Complete todos los campos correctamente', 'warning');
+        Swal.fire('Error', 'Complete los campos correctamente', 'warning');
         return;
     }
 
@@ -332,16 +335,16 @@ async function registrarPagoExtra() {
         const resultado = await response.json();
         
         if (resultado.success) {
-            mostrarMensaje('Pago registrado exitosamente', 'success');
+            Swal.fire('¡Éxito!', 'Pago registrado correctamente', 'success');
             // Limpiar formulario
             document.getElementById('fechaUni').value = '';
             document.getElementById('concepto').value = '';
             document.getElementById('montoExt').value = '00.00';
         } else {
-            mostrarMensaje(resultado.error || 'Error al registrar pago', 'danger');
+            Swal.fire('Error', resultado.error || 'Error al registrar el pago', 'error');
         }
     } catch (error) {
         console.error('Error:', error);
-        mostrarMensaje('Error en la conexión', 'danger');
+        Swal.fire('Error', resultado.error || 'Conexion perdida', 'error');
     }
 }

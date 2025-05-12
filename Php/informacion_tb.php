@@ -39,6 +39,7 @@ try {
             ) AS rn
         FROM Colegiatura
     ) c ON a.ID_Matricula = c.FK_Matricula AND c.rn = 1
+     WHERE a.Estatus = 1 
 ";
 
     $result = $conn->query($query);

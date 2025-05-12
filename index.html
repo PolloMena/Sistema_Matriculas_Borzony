@@ -28,6 +28,7 @@
         
         <!-- Contenedor del formulario de inicio de sesión -->
         <div class="login-container">
+            
             <div class="login-box">
                 <h1 class="text-center mb-4">Inicio de Sesión</h1>
                 
@@ -51,7 +52,12 @@
                         <label for="contrasena" class="form-label">
                             <i class="fas fa-lock"></i> Contraseña
                         </label>
-                        <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="Ingrese su contraseña" required>
+                            <button class="btn btn-outline-secondary toggle-password" type="button">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
                     </div>
                 
                     <div class="d-grid">
@@ -62,17 +68,33 @@
                 </form>
             </div>
         </div>
-
         <!-- Cuadro de la imagen a la derecha -->
         <div class="image-box">
-            <img src="Assets/img/logo.jpg" alt="Imagen de fondo" class="img-fluid">
+            <img src="Assets/img/logo2.png" alt="Imagen de fondo" class="img-fluid">
         </div>
+        
     </div>
 
     
 </body>
 
 <script>
+
+    document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                const icon = this.querySelector('i');
+                
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    icon.classList.replace('fa-eye', 'fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    icon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            });
+        });
+
     document.getElementById('loginForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
