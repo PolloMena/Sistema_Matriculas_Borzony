@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plantilla</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hoja de estilos personalizada -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- ICONO DE LA PAGINA WEB-->
+    <link rel="icon" href="../../Assets/img/logo2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../Assets/img/logo2.png" type="image/x-icon">
+
+    <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
+     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../../Css/navbar.css">
+</head>
+
+<body>
+
+    <!-- Contenedor para el menú -->
+    <div id="navbar-container">
+
+        <!-- Script para cargar el navbar -->
+        <script>
+            // Carga el contenido de navbar.html en el contenedor
+            fetch('../Auxiliares/navbarFondo.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+        </script>
+
+    </div>
+
+    <!-- Contenido de la pagina -->
+    <div class="row">
+        <hr>
+        <h1 class="text-center">
+            <i class="fa-solid fa-user-pen me-2"></i>Modificar Alumno
+        </h1>
+        <div class="col-md-2">
+            <div class="text-center mb-4">
+                <img src="../../Assets/img/usuario/alumno.png" alt="Foto del alumno" class="img-thumbnail rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
+            </div>
+        </div>
+
+        <div class="col-md-4" id="modificar-alumno">
+            <!-- Encabezado con nombre del alumno -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="nombre_Alumno" class="mb-0 text-primary">
+                    <i class="bi bi-person-circle me-2"></i> Cargando nombre...
+                </h2>
+            </div>
+
+            <label for="tipoDatos" class="form-label"><i class="fa-solid fa-marker me-2"></i>Seleccione el dato a Editar</label>
+            <select id="tipoDatos" class="form-select mb-4">
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="estudiante">Datos del Estudiante</option>
+                <option value="contacto">Información de Contacto</option>
+                <option value="facturacion">Datos de Facturación</option>
+            </select>
+
+            
+        </div>
+
+        <!-- Formulario dinámico -->
+        <div class="col-md-4" id="formulario-edicion">
+            
+            <div id="formulario-estudiante" class="formulario-seccion d-none">
+                <h5 class="mb-3">Datos del Estudiante</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" name="Apellido_PAT">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" name="Apellido_MAT">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Fecha de Nacimiento</label>
+                        <input type="date" class="form-control" name="Fecha_Nac">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">CURP</label>
+                        <input type="text" class="form-control" name="CURP">
+                    </div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-guardar" data-seccion="estudiante">
+                            <i class="fa-solid fa-check me-2"></i>Guardar cambios
+                        </button>
+                    </div>
+                    <button class="col-md-6 btn btn-outline-secondary" onclick="window.location.href = '../informacion.html';">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </button>
+                </div>
+                
+            </div>
+
+            <div id="formulario-contacto" class="formulario-seccion d-none">
+                <h5 class="mb-3">Información de Contacto</h5>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label class="form-label">Apellido Paterno</label>
+                        <input type="text" class="form-control" name="Apellido_PAT_contacto">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Apellido Materno</label>
+                        <input type="text" class="form-control" name="Apellido_MAT_contacto">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="Nombre_contacto">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="Correo_contacto">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" name="Telefono_contacto">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Parentesco</label>
+                        <select class="form-select" name="Parentesco">
+                            <option value="Padre">Padre</option>
+                            <option value="Madre">Madre</option>
+                            <option value="Tutor">Tutor</option>
+                            <option value="Hermano">Hermano</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-guardar" data-seccion="contacto">
+                            <i class="fa-solid fa-check me-2"></i>Guardar cambios
+                        </button>
+                    </div>
+                    <button class="col-md-6 btn btn-outline-secondary" onclick="window.location.href = '../informacion.html';">
+                        <i class="fas fa-times me-2"></i>Cancelar
+                    </button>
+                </div>
+            </div>
+
+            <div id="formulario-facturacion" class="formulario-seccion d-none">
+                <h5 class="mb-3">Datos de Facturación</h5>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre SAT</label>
+                        <input type="text" class="form-control" name="Nombre_SAT">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">RFC</label>
+                        <input type="text" class="form-control" name="RFC">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">CFDI</label>
+                        <input type="text" class="form-control" name="CFDI">
+                    </div>
+                    <div class="col-md-12">
+                        <label class="form-label">Correo</label>
+                        <input type="email" class="form-control" name="Correo_facturacion">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">¿Constancia de Situacion Fiscal?</label>
+                        <select class="form-select" name="Constancia">
+                            <option value="Si">Sí</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <button class="btn btn-primary btn-guardar" data-seccion="facturacion">
+                                <i class="fa-solid fa-check me-2"></i>Guardar cambios
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="col-md-6 btn btn-outline-secondary" onclick="window.location.href = '../informacion.html';">
+                                <i class="fas fa-times me-2"></i>Cancelar
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../javaScript/alumno_editar.js"></script>
+</body>
+
+<!-- Contenedor para el footer -->
+<div id="footer-container">
+
+    <!-- Script para cargar el footer -->
+    <script>
+        // Carga el contenido de navbar.html en el contenedor
+        fetch('../Auxiliares/footerSubCarpeta.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-container').innerHTML = data;
+            });
+    </script>
+
+</div>
+</html>

@@ -10,7 +10,7 @@ try {
                 Ano,
                 Grupo
             FROM Alumnos
-            WHERE Grupo IS NULL OR Grupo = '' AND Estatus = 1";
+            WHERE Estatus = 1 AND (Grupo = '' OR Grupo IS NULL) ";
     
     $stmt = $conn->prepare($sql);
     $stmt->execute();

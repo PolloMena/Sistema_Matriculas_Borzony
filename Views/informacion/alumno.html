@@ -53,8 +53,6 @@
                     <img src="../../Assets/img/usuario/alumno.png" alt="Foto del alumno" class="img-thumbnail rounded-circle" style="width: 200px; height: 200px; object-fit: cover;">
                     
                 </div>
-                
-                
             </div>
     
             <!-- Columna 2: Datos del alumno (no editables) -->
@@ -190,13 +188,18 @@
                 <button id="btnBajaAlumno" class="btn btn-danger me-2">
                     <i class="fa-solid fa-user-minus me-2"></i>Baja de Alumno
                 </button>
+
+                <button id="btnModificarAlumno" class="btn btn-warning me-2">
+                    <i class="fa-solid fa-pen-to-square me-2"></i>Modificar Alumno
+                </button>
+
                 <button class="btn btn-outline-secondary" onclick="window.location.href = '../informacion.html';">
                     <i class="fas fa-times me-2"></i>Regresar
                 </button>
             </div>
         </div>
 
-        <br>
+        <hr>
     </div> <!-- Cierre del container-fluid -->
        
     <div id="contenedor-pagos" class="separacion text-center">
@@ -212,7 +215,7 @@
     <!-- Script para cargar el menú -->
     <script>
         // Carga el contenido de navbar.html en el contenedor
-        fetch('../Auxiliares/footer.html')
+        fetch('../Auxiliares/footerSubCarpeta.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

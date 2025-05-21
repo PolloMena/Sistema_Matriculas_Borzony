@@ -13,7 +13,7 @@
 
     <!-- ICONO DE LA PAGINA WEB-->
     <link rel="icon" href="../../Assets/img/logo2.png" type="image/x-icon">
-    <link rel="shortcut icon" href="../Assets/img/logo2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../..//Assets/img/logo2.png" type="image/x-icon">
 
     <!-- NO BORRAR PORQUE SE TUMBA EL NAVBAR -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -295,7 +295,7 @@
     <!-- Script para cargar el menú -->
     <script>
         // Carga el contenido de navbar.html en el contenedor
-        fetch('../Auxiliares/footer.html')
+        fetch('../Auxiliares/footerSubCarpeta.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

@@ -148,6 +148,7 @@ function mostrarAlumnoActual() {
 
     document.getElementById('ultimoPago').value = pago || 'Sin registro';
     alumnoID = alumno.ID_Matricula;
+    console.log("Alumno es: ",alumnoID);
     alumnoNombreCompleto = `${alumno.Apellido_PAT} ${alumno.Apellido_MAT} ${alumno.Nombre}`;
     
     // Actualizar UI
@@ -346,5 +347,78 @@ async function registrarPagoExtra() {
     } catch (error) {
         console.error('Error:', error);
         Swal.fire('Error', resultado.error || 'Conexion perdida', 'error');
+    }
+}
+
+// ------------------------REINICIAR PAGOS DE MATERIALES----------------------------------
+document.getElementById('btnReiniciarMateriales').addEventListener('click', reiniciarMat);
+
+async function reiniciarMat() {
+    // Validar que hay un alumno seleccionado
+    console.log("Entro");
+    if (!alumnoID) {
+        Swal.fire('Error', 'Primero identifique un alumno', 'warning');
+        return;
+    }
+
+    // Obtener pagos a registrar (solo los editables con datos)
+    const pagosAregistrar = [];
+    for (let i = 1; i <= 4; i++) {
+        const fecha = document.getElementById(`fecha${i}`).value;
+        const monto = parseFloat(document.getElementById(`monto${i}`).value);
+        
+        // Solo considerar filas editables con datos válidos
+        if (document.getElementById(`fecha${i}`).readOnly && fecha && !isNaN(monto) && monto > 0) {
+            pagosAregistrar.push({
+                fecha: fecha,
+                monto: monto.toFixed(2)
+            });
+        }
+    }
+    
+    if (pagosAregistrar.length === 0) {
+        mostrarMensaje('No hay pagos válidos para reinciar', 'warning');
+        Swal.fire('Error', 'No hay pagos registrados', 'warning');
+        return;
+    }
+
+    const result = await Swal.fire({
+        title: 'Confirmar Registro',
+        html: `<p>¿Esta seguro de reiniciar ${pagosAregistrar.length} pago(s)</p>
+               <p><strong>Alumno:</strong> ${alumnoNombreCompleto}</p>`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, registrar',
+        cancelButtonText: 'Cancelar'
+    });
+    
+    if (!result.isConfirmed) {
+        mostrarMensaje('Reinicio de pago Cancelado', 'warning');
+        return;
+    }
+    try {
+        const response = await fetch('../../Php/reiniciar_pagos.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                accion: 'registrar_pagos',
+                matricula: alumnoID,
+                pagos: JSON.stringify(pagosAregistrar)
+            })
+        });
+
+        const resultado = await response.json();
+        
+        if (resultado.success) {
+            Swal.fire('¡Éxito!', 'Pago de Materiales reiniciado!', 'success');
+            buscarAlumnoParaAutocompletar();
+        } else {
+            mostrarMensaje(resultado.error || 'Error al registrar pagos', 'danger');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        mostrarMensaje('Error en la conexión', 'danger');
     }
 }

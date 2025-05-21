@@ -78,7 +78,7 @@ try {
 
             $sqlPagos = "SELECT ID_Otros, Fecha, Monto 
                         FROM Otros_Pagos 
-                        WHERE FK_Matricula = ? AND Concepto = 'Materiales'
+                        WHERE FK_Matricula = ? AND Concepto = 'Materiales' AND Estatus = 1
                         ORDER BY Fecha ASC
                         LIMIT 4";
 
@@ -105,7 +105,7 @@ try {
         
         $sqlPagos = "SELECT ID_Otros, Fecha, Monto 
                     FROM Otros_Pagos 
-                    WHERE FK_Matricula = ? AND Concepto = 'Materiales'
+                    WHERE FK_Matricula = ? AND Concepto = 'Materiales' AND Estatus = 1
                     ORDER BY Fecha ASC
                     LIMIT 4";
         

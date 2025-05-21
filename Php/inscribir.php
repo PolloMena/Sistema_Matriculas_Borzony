@@ -101,6 +101,28 @@ try {
         throw new Exception("Error al guardar facturación: " . $stmt->error);
     }
     
+    // =============================================
+    // 4. Registrar el pago de inscripción en Otros_Pagos
+    // =============================================
+    $stmt_pago = $conn->prepare("INSERT INTO Otros_Pagos (
+        FK_Matricula,
+        Fecha,
+        Concepto,
+        Monto,
+        Estatus
+    ) VALUES (?, CURDATE(), 'Inscripcion', ?, 1)");
+    
+    $stmt_pago->bind_param("id",
+        $matricula_id,                       // FK del alumno recién insertado
+        $_POST['monto_inscripcion']          // Monto del formulario
+    );
+    
+    if (!$stmt_pago->execute()) {
+        throw new Exception("Error al registrar pago: " . $stmt_pago->error);
+    }
+    $stmt_pago->close();
+
+
     // En caso de ÉXITO:
     $conn->commit();
     echo "<script>

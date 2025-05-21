@@ -378,3 +378,12 @@ async function ejecutarBajaAlumno(idAlumno, idUsuarioAutorizador) {
         throw error;
     }
 }
+
+async function redirigirVNT() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const idAlumno = urlParams.get('id');
+    console.log(idAlumno);
+    window.location.assign("alumno_editar.html?id="+idAlumno);
+}
+
+document.getElementById('btnModificarAlumno').addEventListener('click', redirigirVNT);
