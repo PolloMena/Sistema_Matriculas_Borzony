@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 try {
-    require_once('conexion.php');
+    require_once('../conexion.php');
     
     $query = "
     SELECT 

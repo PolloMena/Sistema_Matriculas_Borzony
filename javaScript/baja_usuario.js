@@ -2,19 +2,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollContainer = document.querySelector('.scroll-container');
     
     // Función para cargar usuarios
-    async function cargarUsuarios() {
-        try {
-            const response = await fetch('../../Php/obtener_usuarios.php');
-            const data = await response.json();
-            //console.log(data);
-            
-            
-            mostrarUsuarios(data);
-        } catch (error) {
-            console.error('Error:', error);
-            Swal.fire('Error', 'No se pudieron cargar los usuarios: ' + error.message, 'error');
+     async function cargarUsuarios() {
+    try {
+        const sesionResp = await fetch('../../Php/sesiones/verificar_sesion.php');
+        const data = await sesionResp.json();
+
+        if (!data.autenticado) {
+            // No autenticado
+        } else {
+            let usuariosResp;
+            if (data.rol == 'Directora' || data.rol == 'Ingeniero') {
+                console.log("Rol de Directora o Ingeniero, cargando todos los usuarios");
+                usuariosResp = await fetch(`../../Php/ajustes/obtener_usuarios.php?rol=${data.rol}`);
+            } else {
+                usuariosResp = await fetch('../../Php/ajustes/obtener_usuarios.php');
+            }
+            const usuarios = await usuariosResp.json();
+            mostrarUsuarios(usuarios);
         }
+    } catch (error) {
+        console.error('Error:', error);
+        Swal.fire('Error', 'No se pudieron cargar los usuarios: ' + error.message, 'error');
     }
+}
     
     // Función para mostrar usuarios en tarjetas
     function mostrarUsuarios(usuarios) {
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (confirm.isConfirmed) {
                     try {
-                        const response = await fetch('../../Php/eliminar_usuarios.php', {
+                        const response = await fetch('../../Php/ajustes/eliminar_usuarios.php', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

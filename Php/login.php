@@ -1,5 +1,5 @@
 <?php
-session_start();
+session_start(); 
 include 'conexion.php';
 
 $usuario = $_POST['usuario'];
@@ -20,6 +20,7 @@ try {
         if (password_verify($contrasena_ingresada, $fila['Contrasena'])) {
             $_SESSION['usuario'] = $usuario;
             $_SESSION['rol'] = $fila['Rol'];
+            $_SESSION['ID_Users'] = $fila['ID_Users'];
             echo json_encode(['success' => true]);
             exit();
         } else {

@@ -42,7 +42,7 @@ async function buscarAlumnoParaAutocompletar() {
             
             mostrarMensaje('Buscando alumnos...', 'info');
             
-            const response = await fetch('../../Php/otros_pagos.php', {
+            const response = await fetch('../../Php/pagos/otros_pagos.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -82,7 +82,7 @@ async function buscarAlumnoParaAutocompletar() {
             //console.log('alumno2');
             // Obtener pagos del siguiente alumno
             const alumnoActual = resultadosBusqueda.alumnos[resultadosBusqueda.indiceActual];
-            const response = await fetch('../../Php/otros_pagos.php', {
+            const response = await fetch('../../Php/pagos/otros_pagos.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -235,7 +235,7 @@ async function registrarPagos() {
     try {
         
         
-        const response = await fetch('../../Php/otros_pagos.php', {
+        const response = await fetch('../../Php/pagos/otros_pagos.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -319,7 +319,7 @@ async function registrarPagoExtra() {
     try {
         mostrarMensaje('Registrando pago...', 'info');
         
-        const response = await fetch('../../Php/otros_pagos.php', {
+        const response = await fetch('../../Php/pagos/otros_pagos.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -397,7 +397,7 @@ async function reiniciarMat() {
         return;
     }
     try {
-        const response = await fetch('../../Php/reiniciar_pagos.php', {
+        const response = await fetch('../../Php/pagos/reiniciar_pagos.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

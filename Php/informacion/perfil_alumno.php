@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once('conexion.php');
+require_once('../conexion.php');
 
 // Validar y sanitizar el ID
 $idAlumno = isset($_GET['id']) ? intval($_GET['id']) : 0;

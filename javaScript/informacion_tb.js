@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Cargar datos iniciales (tu código original modificado)
-    fetch('../Php/informacion_tb.php')
+    fetch('../Php/informacion/informacion_tb.php')
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();

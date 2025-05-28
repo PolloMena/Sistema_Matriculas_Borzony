@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Configuración de la base de datos
-require_once 'conexion.php'; // Archivo con las constantes de conexión
+require_once '../conexion.php'; // Archivo con las constantes de conexión
 
 try {
     // Verificar acción solicitada

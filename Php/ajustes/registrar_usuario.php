@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once 'conexion.php'; // Asegúrate de tener este archivo con la conexión a DB
+require_once '../conexion.php'; // Asegúrate de tener este archivo con la conexión a DB
 
 try {
     // Validar datos recibidos

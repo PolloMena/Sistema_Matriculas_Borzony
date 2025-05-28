@@ -1,7 +1,7 @@
 // Función principal para cargar y mostrar los datos
 function cargarDatosAlumno(idAlumno) {
     
-    fetch(`../../php/perfil_alumno.php?id=${idAlumno}`)
+    fetch(`../../php/informacion/perfil_alumno.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();
@@ -82,7 +82,7 @@ function actualizarFacturacion(facturacion) {
 // Función para cargar y mostrar los pagos del alumno
 function cargarPagosAlumno(idAlumno) {
     //console.log('Actualizado');
-    fetch(`../../php/perfil_pago.php?id=${idAlumno}`)
+    fetch(`../../php/informacion/perfil_pago.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();
@@ -294,7 +294,7 @@ async function confirmarBajaAlumno(idAlumno) {
             didOpen: () => Swal.showLoading()
         });
         
-        const response = await fetch('../../Php/verificar_baja.php', {
+        const response = await fetch('../../Php/informacion/verificar_baja.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -349,7 +349,7 @@ async function ejecutarBajaAlumno(idAlumno, idUsuarioAutorizador) {
             didOpen: () => Swal.showLoading()
         });
         
-        const response = await fetch('../../Php/alumnos_baja.php', {
+        const response = await fetch('../../Php/informacion/alumnos_baja.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

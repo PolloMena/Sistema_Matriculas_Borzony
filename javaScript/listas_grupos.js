@@ -39,6 +39,24 @@ document.querySelector('.table-responsive').addEventListener('change', function(
 
 document.getElementById('btnAsignarGrupo').addEventListener('click', async function() {
     // Obtener alumnos seleccionados
+    fetch('../../Php/sesiones/verificar_sesion.php') // Ajusta la ruta según tu estructura
+        .then(response => response.json())
+        .then(data => {
+            if (!data.autenticado) {
+                
+            } else {
+                console.log("Rol para grupos:", data.rol);
+                // Aquí puedes mostrar el nombre o rol si quieres
+                if (data.rol !== 'Administrador' && data.rol !== 'Directora') {
+                    Swal.fire('Acceso denegado', 'No tienes permiso para asignar grupos', 'error');
+                    return;
+                }
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar sesión:', error);
+        });
+    
     const matriculasSeleccionadas = obtenerMatriculasSeleccionadas();
 
     const matriculasSinAsignar = obtenerMatriculasSeleccionadas();
@@ -80,7 +98,7 @@ document.getElementById('btnAsignarGrupo').addEventListener('click', async funct
     
     try {
         // Enviar datos al servidor
-        const response = await fetch('../../Php/alumnos_asignar_grupo.php', {
+        const response = await fetch('../../Php/informacion/alumnos_asignar_grupo.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -108,7 +126,7 @@ document.getElementById('btnAsignarGrupo').addEventListener('click', async funct
 });
 // --------------------------- TABLA ALUMNOS SIN ASIGNAR--------------------------------
 function cargarAlumnosSinAsignar() {
-    fetch('../../Php/alumnos_sin_asignar.php')
+    fetch('../../Php/informacion/alumnos_sin_asignar.php')
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();
@@ -207,7 +225,7 @@ async function buscarAlumnosPorGrupo() {
         });
         
         // Realizar búsqueda
-        const response = await fetch(`../../Php/alumnos_con_grupos.php?año=${año}&grupo=${grupo}`);
+        const response = await fetch(`../../Php/informacion/alumnos_con_grupos.php?año=${año}&grupo=${grupo}`);
         const data = await response.json();
         
         if (!data.success) throw new Error(data.error || 'Error en la búsqueda');

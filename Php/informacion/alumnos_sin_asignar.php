@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once 'conexion.php'; // Ajusta la ruta según tu estructura
+require_once '../conexion.php'; // Ajusta la ruta según tu estructura
 
 try {
     // Consulta para alumnos sin grupo asignado (donde Grupo es NULL o vacío)

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const nombreMes = selectMes.options[selectMes.selectedIndex].text;
         
         try {
-            const response = await fetch(`../../Php/informe_mensual.php?mes=${mes}&ano=${ano}`);
+            const response = await fetch(`../../Php/informacion/informe_mensual.php?mes=${mes}&ano=${ano}`);
             const data = await response.json();
             
             if (data.success) {

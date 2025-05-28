@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once 'conexion.php';
+require_once '../conexion.php';
 
 try {
     $data = json_decode(file_get_contents('php://input'), true);

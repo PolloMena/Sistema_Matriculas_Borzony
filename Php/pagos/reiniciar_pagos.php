@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 // Incluir la conexión
-require_once 'conexion.php'; // Asegúrate de que la ruta sea correcta
+require_once '../conexion.php'; // Asegúrate de que la ruta sea correcta
 
 // Obtener datos del POST
 $matricula = isset($_POST['matricula']) ? intval($_POST['matricula']) : null;

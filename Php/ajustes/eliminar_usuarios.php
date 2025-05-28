@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-require_once 'conexion.php'; // Ajusta según tu estructura
+require_once '../conexion.php'; // Ajusta según tu estructura
 
 session_start();
 

@@ -108,7 +108,8 @@
         </div>
     </div>
     
-    
+    <script src="../../javaScript/verificar_sesion_subCarpetas.js"></script>
+    <script src="../../javaScript/roles/validar_rol_subCarpetas.js"></script>
 </body>
 
 <!-- Contenedor para el footer -->
@@ -127,7 +128,7 @@
 </div>
 
 <!-- JavaScript para mostrar/ocultar contraseña -->
-<script>
+    <script>
     document.querySelectorAll('.toggle-password').forEach(button => {
         button.addEventListener('click', function() {
             const input = this.parentElement.querySelector('input');
@@ -184,7 +185,7 @@
         try {
             // Enviar datos al servidor
             
-            const response = await fetch('../../Php/registrar_usuario.php', {
+            const response = await fetch('../../Php/ajustes/registrar_usuario.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',

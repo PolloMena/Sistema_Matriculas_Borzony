@@ -145,6 +145,24 @@
             btnSubmit.innerHTML = 'Iniciar sesión';
         }
     });
-    </script>
+</script>
+
+<!-- VALIDAR SI YA PASO-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('Php/sesiones/verificar_sesion.php') // Ajusta la ruta según tu estructura
+        .then(response => response.json())
+        .then(data => {
+            if (!data.autenticado) {
+
+            } else {
+                window.location.href = 'Views/index.html'; // Redirige si ya está autenticado
+            }
+        })
+        .catch(error => {
+            console.error('Error al verificar sesión:', error);
+        });
+    });
+</script>
 
 </html>

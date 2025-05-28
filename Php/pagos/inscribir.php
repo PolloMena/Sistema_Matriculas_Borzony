@@ -1,6 +1,6 @@
 <?php
 
-include 'conexion.php';
+include '../conexion.php';
 
 // Iniciar transacción para integridad de datos
 $conn->begin_transaction();
