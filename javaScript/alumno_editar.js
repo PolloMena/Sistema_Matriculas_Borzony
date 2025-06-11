@@ -87,6 +87,25 @@ document.querySelectorAll('.btn-guardar').forEach(btn => {
     });
 });
 
+document.querySelectorAll('.btn-cancelar').forEach(btn =>{
+    btn.addEventListener('click', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const idAlumno = urlParams.get('id');
+        Swal.fire({
+            title: '¿Cancelar edición?',
+            text: "Los cambios no guardados se perderán.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, cancelar',
+            cancelButtonText: 'No, continuar editando'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'alumno.html?id=' + idAlumno;
+            }
+        });
+        });
+} );
+
 async function cargarNombreAlumno(id) {
     try {
         console.log("Cargando datos de alumno", id);

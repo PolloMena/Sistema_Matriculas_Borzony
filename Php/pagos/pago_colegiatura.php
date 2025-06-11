@@ -1,9 +1,9 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 
-require_once '../conexion.php'; // Archivo con las constantes de conexión
+require_once '../conexion.php'; // Codigo de conexión a la base de datos
 
-// Respuesta inicial
+// Resto del codigo
 $response = [
     'success' => false,
     'message' => '',

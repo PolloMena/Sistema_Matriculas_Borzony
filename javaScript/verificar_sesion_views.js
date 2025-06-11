@@ -6,9 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!data.autenticado) {
                 window.location.href = '../inicio.html'; // Redirige si no hay sesión
             } else {
-                console.log("Sesión activa como:", data.usuario);
-                console.log("Como rol de :", data.rol);
-                // Aquí puedes mostrar el nombre o rol si quieres
+                //SESION ACTIVA
             }
         })
         .catch(error => {
