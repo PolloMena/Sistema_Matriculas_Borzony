@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 function getColorRol(rol) {
     const colores = {
         'Administrador': 'bg-primary',
-        'Personal': 'bg-success',
+        'Auxiliar': 'bg-success',
         'Maestro': 'bg-info',
         'Ingeniero': 'bg-warning text-dark',
         'Directora': 'bg-danger'

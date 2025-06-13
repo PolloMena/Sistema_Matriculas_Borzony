@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let badgeClass = 'bg-secondary';
             if (usuario.Rol === 'Administrador') badgeClass = 'bg-primary';
             else if (usuario.Rol === 'Maestro') badgeClass = 'bg-info';
-            else if (usuario.Rol === 'Personal') badgeClass = 'bg-success';
+            else if (usuario.Rol === 'Auxiliar') badgeClass = 'bg-success';
             else if (usuario.Rol === 'Directora' || usuario.Rol === 'Ingeniero') badgeClass = 'bg-danger';
             
             card.innerHTML = `
