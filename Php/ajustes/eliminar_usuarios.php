@@ -29,7 +29,7 @@ try {
     }
     
     if (!$credencialValida) {
-        throw new Exception('La contraseña no corresponde a un usuario autorizado');
+        throw new Exception('Estas credenciales no tienen permiso para eliminar usuarios');
     }
     
     
