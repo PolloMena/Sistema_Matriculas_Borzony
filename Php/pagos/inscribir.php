@@ -9,7 +9,7 @@ try {
     // =============================================
     // 1. Insertar en tabla Alumnos
     // =============================================
-    $stmt = $conn->prepare("INSERT INTO Alumnos (
+    $stmt = $conn->prepare("INSERT INTO alumnos (
         Apellido_PAT, 
         Apellido_MAT, 
         Nombre, 
@@ -35,7 +35,7 @@ try {
     // =============================================
     // 2. Insertar en tabla Contacto
     // =============================================
-    $stmt = $conn->prepare("INSERT INTO Contacto (
+    $stmt = $conn->prepare("INSERT INTO contacto (
         FK_Matricula,
         Apellido_PAT,
         Apellido_MAT,
@@ -74,7 +74,7 @@ try {
     // =============================================
     // 3. Insertar en tabla Facturacion
     // =============================================
-    $stmt = $conn->prepare("INSERT INTO Facturacion (
+    $stmt = $conn->prepare("INSERT INTO facturacion (
         FK_Matricula,
         Monto_Inscripcion,
         Nombre_SAT,
@@ -104,7 +104,7 @@ try {
     // =============================================
     // 4. Registrar el pago de inscripción en Otros_Pagos
     // =============================================
-    $stmt_pago = $conn->prepare("INSERT INTO Otros_Pagos (
+    $stmt_pago = $conn->prepare("INSERT INTO otros_pagos (
         FK_Matricula,
         Fecha,
         Concepto,

@@ -10,28 +10,29 @@ try {
 
     // Construir consulta principal
     $sql = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo 
-            FROM Alumnos 
+            FROM alumnos 
             WHERE 1=1 AND Estatus = 1";
     $types = '';
     $params = [];
 
     if (!empty($apellidoPaterno)) {
-        $sql .= " AND Apellido_PAT LIKE CONCAT(?, '%')";
+        $sql .= " AND Apellido_PAT COLLATE utf8mb4_general_ci LIKE CONCAT(?, '%')";
         $types .= 's';
         $params[] = $apellidoPaterno;
     }
-
+    
     if (!empty($apellidoMaterno)) {
-        $sql .= " AND Apellido_MAT LIKE CONCAT(?, '%')";
+        $sql .= " AND Apellido_MAT COLLATE utf8mb4_general_ci LIKE CONCAT(?, '%')";
         $types .= 's';
         $params[] = $apellidoMaterno;
     }
-
+    
     if (!empty($nombre)) {
-        $sql .= " AND Nombre LIKE CONCAT('%', ?, '%')";
+        $sql .= " AND Nombre COLLATE utf8mb4_general_ci LIKE CONCAT('%', ?, '%')";
         $types .= 's';
         $params[] = $nombre;
     }
+
 
     $sql .= " ORDER BY Apellido_PAT, Apellido_MAT, Nombre LIMIT 10";
 
@@ -51,7 +52,7 @@ try {
         $idMatricula = $row['ID_Matricula'];
 
         // Consulta corregida (ordena por año + mes numérico)
-        $stmtPago = $conn->prepare("SELECT Mes, Ano FROM Colegiatura 
+        $stmtPago = $conn->prepare("SELECT Mes, Ano FROM colegiatura 
                                     WHERE FK_Matricula = ? 
                                     ORDER BY Ano DESC, 
                                     CASE Mes

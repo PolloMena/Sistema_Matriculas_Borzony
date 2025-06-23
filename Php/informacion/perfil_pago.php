@@ -17,7 +17,7 @@ try {
             CONCAT(Mes, ' ', Ano) AS Periodo,
             Monto,
             DATE_FORMAT(Fecha_Colegiatura, '%d/%m/%Y') AS Fecha_Pago
-        FROM Colegiatura
+        FROM colegiatura
         WHERE FK_Matricula = ?
         ORDER BY Ano DESC, 
         CASE Mes
@@ -38,7 +38,7 @@ try {
             Concepto,
             Monto,
             DATE_FORMAT(Fecha, '%d/%m/%Y') AS Fecha_Pago
-        FROM Otros_Pagos
+        FROM otros_pagos
         WHERE FK_Matricula = ?
         ORDER BY Fecha DESC
     ");

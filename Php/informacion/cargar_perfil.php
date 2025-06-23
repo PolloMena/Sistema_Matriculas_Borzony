@@ -13,7 +13,7 @@ try {
                 Apellido_PAT,
                 Apellido_MAT,
                 Nombre
-            FROM Alumnos
+            FROM alumnos
             WHERE ID_Matricula = ?";
     
     $stmt = $conn->prepare($sql);

@@ -9,7 +9,7 @@ try {
                 CONCAT(Apellido_PAT, ' ', Apellido_MAT, ' ', Nombre) AS NombreCompleto,
                 Ano,
                 Grupo
-            FROM Alumnos
+            FROM alumnos
             WHERE Estatus = 1 AND (Grupo = '' OR Grupo IS NULL) ";
     
     $stmt = $conn->prepare($sql);

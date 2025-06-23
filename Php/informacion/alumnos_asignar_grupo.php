@@ -20,7 +20,7 @@ try {
     }
     
     // Preparar consulta
-    $sql = "UPDATE Alumnos SET Ano = ?, Grupo = ? WHERE ID_Matricula = ?";
+    $sql = "UPDATE alumnos SET Ano = ?, Grupo = ? WHERE ID_Matricula = ?";
     $stmt = $conn->prepare($sql);
     
     // Ejecutar para cada matrícula

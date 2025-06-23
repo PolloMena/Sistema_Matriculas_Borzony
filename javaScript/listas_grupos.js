@@ -47,7 +47,7 @@ document.getElementById('btnAsignarGrupo').addEventListener('click', async funct
             } else {
                 console.log("Rol para grupos:", data.rol);
                 // Aquí puedes mostrar el nombre o rol si quieres
-                if (data.rol !== 'Administrador' && data.rol !== 'Directora') {
+                if (data.rol !== 'Administrador' && data.rol !== 'Directora' && data.rol !== 'Ingeniero') {
                     Swal.fire('Acceso denegado', 'No tienes permiso para asignar grupos', 'error');
                     return;
                 }

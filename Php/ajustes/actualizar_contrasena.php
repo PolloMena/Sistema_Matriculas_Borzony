@@ -32,7 +32,7 @@ try {
     $hash = password_hash($nuevaContrasena, PASSWORD_BCRYPT);
 
     // Actualizar en la base de datos
-    $stmtUpdate = $conn->prepare("UPDATE Usuarios SET Contrasena = ? WHERE ID_Users = ?");
+    $stmtUpdate = $conn->prepare("UPDATE usuarios SET Contrasena = ? WHERE ID_Users = ?");
     $stmtUpdate->bind_param("si", $hash, $userId);
 
     if ($stmtUpdate->execute()) {

@@ -265,8 +265,7 @@ INSERT INTO `usuarios` (`ID_Users`, `Usuario`, `Contrasena`, `Rol`) VALUES
 -- Indices de la tabla `alumnos`
 --
 ALTER TABLE `alumnos`
-  ADD PRIMARY KEY (`ID_Matricula`),
-  ADD UNIQUE KEY `CURP` (`CURP`);
+  ADD PRIMARY KEY (`ID_Matricula`);
 
 --
 -- Indices de la tabla `colegiatura`

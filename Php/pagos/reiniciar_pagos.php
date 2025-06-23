@@ -17,7 +17,7 @@ if (!$matricula) {
 
 try {
     // Query para actualizar los pagos de "Materiales"
-    $sql = "UPDATE Otros_Pagos 
+    $sql = "UPDATE otros_pagos 
             SET Estatus = 0 
             WHERE FK_Matricula = ? 
             AND Concepto = 'Materiales' 

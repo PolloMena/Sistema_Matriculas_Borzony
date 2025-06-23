@@ -28,17 +28,14 @@ async function buscarAlumnoParaAutocompletar() {
     const apellidoMaterno = document.getElementById('apellidoMaternoBusqueda').value.trim();
     const nombre = document.getElementById('nombreBusqueda').value.trim();
 
-    if (!apellidoPaterno && !apellidoMaterno && !nombre) {
-        mostrarMensaje('Ingrese al menos un criterio', 'warning');
+    if (!apellidoPaterno || !apellidoMaterno || !nombre) {
+        mostrarMensaje('Por favor llene todos los campos', 'warning');
         Swal.fire('Error', 'Busqueda no valida', 'warning');
         console.log('Actualizado');
         return;
     }
 
     try {
-        // Primera búsqueda o nueva búsqueda
-        if (resultadosBusqueda.total === 0 || 
-            JSON.stringify(resultadosBusqueda.criterios) !== JSON.stringify({apellidoPaterno, apellidoMaterno, nombre})) {
             
             mostrarMensaje('Buscando alumnos...', 'info');
             
@@ -56,8 +53,11 @@ async function buscarAlumnoParaAutocompletar() {
                 })
             });
 
-            const data = await response.json();
+            const texto = await response.text();
             
+            // Parsear correctamente
+            const data = JSON.parse(texto);
+            console.log(data);
             if (!data.alumnos || data.alumnos.length === 0) {
                 mostrarMensaje('No se encontraron alumnos', 'warning');
                 return;
@@ -73,30 +73,8 @@ async function buscarAlumnoParaAutocompletar() {
             //console.log('alumno1');
             mostrarAlumnoActual();
             llenarTablaPagos(resultadosBusqueda.pagos);
-        } 
-        // Navegar entre resultados existentes
-        else {
-            resultadosBusqueda.indiceActual = 
-                (resultadosBusqueda.indiceActual + 1) % resultadosBusqueda.total;
-            mostrarAlumnoActual();
-            //console.log('alumno2');
-            // Obtener pagos del siguiente alumno
-            const alumnoActual = resultadosBusqueda.alumnos[resultadosBusqueda.indiceActual];
-            const response = await fetch('../../Php/pagos/otros_pagos.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    matricula: alumnoActual.ID_Matricula,
-                    accion: 'obtener_pagos_alumno'
-                })
-            });
-            
-            const data = await response.json();
-            resultadosBusqueda.pagos = data.pagos || [];
-            llenarTablaPagos(resultadosBusqueda.pagos);
-        }
+        
+        
 
     } catch (error) {
         console.error('Error:', error);
@@ -148,7 +126,7 @@ function mostrarAlumnoActual() {
 
     document.getElementById('ultimoPago').value = pago || 'Sin registro';
     alumnoID = alumno.ID_Matricula;
-    console.log("Alumno es: ",alumnoID);
+    
     alumnoNombreCompleto = `${alumno.Apellido_PAT} ${alumno.Apellido_MAT} ${alumno.Nombre}`;
     
     // Actualizar UI

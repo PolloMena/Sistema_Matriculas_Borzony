@@ -26,7 +26,7 @@ try {
     $passwordHash = password_hash($password, PASSWORD_BCRYPT);
 
     // Insertar en la base de datos
-    $stmt = $conn->prepare("INSERT INTO Usuarios (Usuario, Contrasena, Rol) VALUES (?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO usuarios (Usuario, Contrasena, Rol) VALUES (?, ?, ?)");
     $stmt->bind_param('sss', $usuario, $passwordHash, $rol);
 
     if ($stmt->execute()) {

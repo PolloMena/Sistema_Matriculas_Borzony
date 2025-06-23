@@ -24,7 +24,7 @@ try {
             CURP,
             Ano,
             Grupo
-        FROM Alumnos 
+        FROM alumnos 
         WHERE ID_Matricula = ?
     ");
     $stmtAlumno->bind_param("i", $idAlumno);
@@ -44,7 +44,7 @@ try {
             Correo,
             Telefono,
             Parentesco
-        FROM Contacto
+        FROM contacto
         WHERE FK_Matricula = ?
         LIMIT 1
     ");
@@ -62,7 +62,7 @@ try {
             Correo,
             Constancia,
             DATE_FORMAT(Fecha_Factura, '%d/%m/%Y') AS Fecha_Factura_Formateada
-        FROM Facturacion
+        FROM facturacion
         WHERE FK_Matricula = ?
         LIMIT 1
     ");

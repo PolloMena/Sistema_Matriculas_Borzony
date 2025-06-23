@@ -59,7 +59,7 @@ try {
     }
 
     // Preparar consulta SQL
-    $sql = "INSERT INTO Colegiatura (
+    $sql = "INSERT INTO colegiatura (
                 FK_Matricula, 
                 Monto, 
                 Mes, 

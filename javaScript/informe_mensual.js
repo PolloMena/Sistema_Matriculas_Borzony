@@ -217,7 +217,7 @@ function generarPDF() {
 
     // Texto del nombre (5mm más abajo)
     doc.setFont('helvetica', 'bold'); // Opcional: poner en negrita el nombre
-    doc.text("ADRIANA BARBOSA MUÑOZ.", marginLeft + 110, finalY + 40);
+    doc.text("ADRIANA ELIZABETH BARBOSA MUÑOZ.", marginLeft + 110, finalY + 40);
     doc.setFont('helvetica', 'normal'); // Volver a normal
 
     // 6. Fecha de generación

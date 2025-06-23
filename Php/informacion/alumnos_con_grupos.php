@@ -19,7 +19,7 @@ try {
                 Nombre,
                 Ano,
                 Grupo
-            FROM Alumnos
+            FROM alumnos
             WHERE Ano = ? AND Grupo = ? AND Estatus = 1
             ORDER BY Apellido_PAT, Apellido_MAT, Nombre";
     

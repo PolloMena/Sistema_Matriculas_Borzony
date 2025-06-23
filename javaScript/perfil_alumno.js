@@ -1,7 +1,7 @@
 // Función principal para cargar y mostrar los datos
 function cargarDatosAlumno(idAlumno) {
     
-    fetch(`../../php/informacion/perfil_alumno.php?id=${idAlumno}`)
+    fetch(`../../Php/informacion/perfil_alumno.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();
@@ -82,7 +82,7 @@ function actualizarFacturacion(facturacion) {
 // Función para cargar y mostrar los pagos del alumno
 function cargarPagosAlumno(idAlumno) {
     //console.log('Actualizado');
-    fetch(`../../php/informacion/perfil_pago.php?id=${idAlumno}`)
+    fetch(`../../Php/informacion/perfil_pago.php?id=${idAlumno}`)
         .then(response => {
             if (!response.ok) throw new Error('Error en la red');
             return response.json();

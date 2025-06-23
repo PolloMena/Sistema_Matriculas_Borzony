@@ -14,21 +14,21 @@ if (!$id || !$seccion) {
 
 switch ($seccion) {
     case 'estudiante':
-        $stmt = $conn->prepare("UPDATE Alumnos SET Apellido_PAT = ?, Apellido_MAT = ?, Nombre = ?, Fecha_Nac = ?, CURP = ? WHERE ID_Matricula = ?");
+        $stmt = $conn->prepare("UPDATE alumnos SET Apellido_PAT = ?, Apellido_MAT = ?, Nombre = ?, Fecha_Nac = ?, CURP = ? WHERE ID_Matricula = ?");
         $stmt->bind_param("sssssi", 
             $input['Apellido_PAT'], $input['Apellido_MAT'], $input['Nombre'], 
             $input['Fecha_Nac'], $input['CURP'], $id);
         break;
 
     case 'contacto':
-        $stmt = $conn->prepare("UPDATE Contacto SET Apellido_PAT = ?, Apellido_MAT = ?, Nombre = ?, Correo = ?, Telefono = ?, Parentesco = ? WHERE FK_Matricula = ?");
+        $stmt = $conn->prepare("UPDATE contacto SET Apellido_PAT = ?, Apellido_MAT = ?, Nombre = ?, Correo = ?, Telefono = ?, Parentesco = ? WHERE FK_Matricula = ?");
         $stmt->bind_param("ssssssi",
             $input['Apellido_PAT'], $input['Apellido_MAT'], $input['Nombre'],
             $input['Correo'], $input['Telefono'], $input['Parentesco'], $id);
         break;
 
     case 'facturacion':
-        $stmt = $conn->prepare("UPDATE Facturacion SET Nombre_SAT = ?, RFC = ?, CFDI = ?, Correo = ?, Constancia = ? WHERE FK_Matricula = ?");
+        $stmt = $conn->prepare("UPDATE facturacion SET Nombre_SAT = ?, RFC = ?, CFDI = ?, Correo = ?, Constancia = ? WHERE FK_Matricula = ?");
         $stmt->bind_param("sssssi",
             $input['Nombre_SAT'], $input['RFC'], $input['CFDI'], 
             $input['Correo'], $input['Constancia'], $id);

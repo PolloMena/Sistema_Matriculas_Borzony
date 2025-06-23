@@ -16,7 +16,7 @@ try {
                             Fecha_Colegiatura AS fecha,
                             Monto AS monto,
                             'Colegiatura' AS concepto
-                          FROM Colegiatura
+                          FROM colegiatura
                           WHERE MONTH(Fecha_Colegiatura) = ? 
                           AND YEAR(Fecha_Colegiatura) = ?";
 
@@ -25,7 +25,7 @@ try {
                             Fecha AS fecha,
                             Monto AS monto,
                             Concepto AS concepto
-                         FROM Otros_Pagos
+                         FROM otros_pagos
                          WHERE MONTH(Fecha) = ? 
                          AND YEAR(Fecha) = ?";
 

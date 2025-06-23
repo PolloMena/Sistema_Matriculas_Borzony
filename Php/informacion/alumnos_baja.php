@@ -13,7 +13,7 @@ try {
     $idAlumno = $data['id'];
     
     // Actualizar estatus a 0 (baja)
-    $sql = "UPDATE Alumnos SET Estatus = 0 WHERE ID_Matricula = ?";
+    $sql = "UPDATE alumnos SET Estatus = 0 WHERE ID_Matricula = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $idAlumno);
     $stmt->execute();

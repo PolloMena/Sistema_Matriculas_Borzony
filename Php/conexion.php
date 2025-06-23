@@ -1,9 +1,9 @@
 <?php
 // Configuración de la base de datos
-$servername = "localhost";
-$username = "user_borzony";
-$password = "b0rZ0n1@";
-$dbname = "db_borzony";
+$servername = "127.0.0.1";
+$username = "u724693148_gnasg";
+$password = "?2p0fAEn";
+$dbname = "u724693148_gnasg";
 
 // Conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $dbname);

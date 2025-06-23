@@ -12,7 +12,7 @@ try {
         a.Grupo,
         c.Mes AS UltimoMesPagado,
         c.Ano AS UltimoAnoPagado
-    FROM Alumnos a
+    FROM alumnos a
     LEFT JOIN (
         SELECT 
             FK_Matricula, 
@@ -37,7 +37,7 @@ try {
                     WHEN 'Diciembre' THEN 12
                 END DESC
             ) AS rn
-        FROM Colegiatura
+        FROM colegiatura
     ) c ON a.ID_Matricula = c.FK_Matricula AND c.rn = 1
      WHERE a.Estatus = 1 
 ";

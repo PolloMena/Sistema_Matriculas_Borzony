@@ -39,7 +39,9 @@ async function buscarAlumnoParaAutocompletar() {
                 })
             });
 
-            const data = await response.json();
+            const texto = await response.text();
+            const data = JSON.parse(texto);
+
             
             resultadosBusqueda = {
                 alumnos: data,
@@ -78,7 +80,7 @@ function mostrarAlumnoActual() {
     const pago = alumno.Ultimo_Pago;
     alumnoID=alumno.ID_Matricula;
     alumnoName=alumno.Apellido_PAT + ' '+alumno.Apellido_MAT + ' ' + alumno.Nombre;
-    console.log('El pago es ', pago);
+    //console.log('El pago es ', pago);
     // Actualizar UI
     document.getElementById('año').value = alumno.Ano || '';
     document.getElementById('grupo').value = alumno.Grupo || '';

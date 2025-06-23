@@ -8,11 +8,11 @@ try {
 
     if ($rol === 'Directora' || $rol === 'Ingeniero') {
         // Si es Directora, trae toda la tabla
-        $sql = "SELECT ID_Users, Usuario, Rol FROM Usuarios WHERE Rol NOT IN ('Ingeniero','Directora') ORDER BY Rol, Usuario";
+        $sql = "SELECT ID_Users, Usuario, Rol FROM usuarios WHERE Rol NOT IN ('Ingeniero','Directora') ORDER BY Rol, Usuario";
     } else {
         // Si no, excluye ciertos roles
         $sql = "SELECT ID_Users, Usuario, Rol 
-                FROM Usuarios 
+                FROM usuarios 
                 WHERE Rol NOT IN ('Directora', 'Ingeniero', 'Administrador') 
                 ORDER BY Rol, Usuario";
     }

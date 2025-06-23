@@ -1,4 +1,5 @@
 <?php
+
 header('Content-Type: application/json');
 
 // Configuración de la base de datos
@@ -16,32 +17,38 @@ try {
         $nombre = isset($_POST['nombre']) ? $conn->real_escape_string($_POST['nombre']) : '';
 
         // Construir consulta SQL segura para alumnos
-        $sqlAlumnos = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM Alumnos WHERE 1=1 AND Estatus = 1";
+        $sqlAlumnos = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM alumnos WHERE 1=1 AND Estatus = 1";
         $types = '';
         $params = [];
 
         if (!empty($apellidoPaterno)) {
-            $sqlAlumnos .= " AND Apellido_PAT LIKE CONCAT(?, '%')";
+            $sqlAlumnos .= " AND Apellido_PAT COLLATE utf8mb4_general_ci LIKE CONCAT(?, '%')";
             $types .= 's';
             $params[] = $apellidoPaterno;
         }
-
+        
         if (!empty($apellidoMaterno)) {
-            $sqlAlumnos .= " AND Apellido_MAT LIKE CONCAT(?, '%')";
+            $sqlAlumnos .= " AND Apellido_MAT COLLATE utf8mb4_general_ci LIKE CONCAT(?, '%')";
             $types .= 's';
             $params[] = $apellidoMaterno;
         }
-
+        
         if (!empty($nombre)) {
-            $sqlAlumnos .= " AND Nombre LIKE CONCAT('%', ?, '%')";
+            $sqlAlumnos .= " AND Nombre COLLATE utf8mb4_general_ci LIKE CONCAT('%', ?, '%')";
             $types .= 's';
             $params[] = $nombre;
         }
+
+
 
         $sqlAlumnos .= " ORDER BY Apellido_PAT, Apellido_MAT, Nombre LIMIT 10";
 
         // Preparar y ejecutar consulta de alumnos
         $stmtAlumnos = $conn->prepare($sqlAlumnos);
+        
+        if (!$stmtAlumnos) {
+            throw new Exception("Error al preparar la consulta: " . $conn->error);
+        }
 
         if ($types) {
             $stmtAlumnos->bind_param($types, ...$params);
@@ -50,6 +57,7 @@ try {
         if (!$stmtAlumnos->execute()) {
             throw new Exception("Error en la consulta de alumnos: " . $stmtAlumnos->error);
         }
+        //$stmtAlumnos->store_result();          // <- importante para cerrar momentaneamente la conexion
 
         $resultAlumnos = $stmtAlumnos->get_result();
         $alumnos = $resultAlumnos->fetch_all(MYSQLI_ASSOC);
@@ -58,13 +66,14 @@ try {
         foreach ($alumnos as &$alumno) {
             $idMatricula = $alumno['ID_Matricula'];
 
-            $sqlUltimoPago = "SELECT Mes, Ano FROM Colegiatura 
+            $sqlUltimoPago = "SELECT Mes, Ano FROM colegiatura 
                             WHERE FK_Matricula = ? 
                             ORDER BY Fecha_Colegiatura DESC 
                             LIMIT 1";
             $stmtUltimoPago = $conn->prepare($sqlUltimoPago);
             $stmtUltimoPago->bind_param('i', $idMatricula);
             $stmtUltimoPago->execute();
+            //$stmtUltimoPago->store_result();
             $resultUltimoPago = $stmtUltimoPago->get_result();
             $pago = $resultUltimoPago->fetch_assoc();
 
@@ -77,7 +86,7 @@ try {
             $matricula = $alumnos[0]['ID_Matricula']; // Tomamos el primer alumno
 
             $sqlPagos = "SELECT ID_Otros, Fecha, Monto 
-                        FROM Otros_Pagos 
+                        FROM otros_pagos 
                         WHERE FK_Matricula = ? AND Concepto = 'Materiales' AND Estatus = 1
                         ORDER BY Fecha ASC
                         LIMIT 4";
@@ -88,7 +97,7 @@ try {
             if (!$stmtPagos->execute()) {
                 throw new Exception("Error en la consulta de pagos: " . $stmtPagos->error);
             }
-
+            //$stmtPagos->store_result();
             $resultPagos = $stmtPagos->get_result();
             $pagos = $resultPagos->fetch_all(MYSQLI_ASSOC);
         }
@@ -104,7 +113,7 @@ try {
         $matricula = (int)$_POST['matricula'];
         
         $sqlPagos = "SELECT ID_Otros, Fecha, Monto 
-                    FROM Otros_Pagos 
+                    FROM otros_pagos 
                     WHERE FK_Matricula = ? AND Concepto = 'Materiales' AND Estatus = 1
                     ORDER BY Fecha ASC
                     LIMIT 4";
@@ -112,9 +121,7 @@ try {
         $stmt = $conn->prepare($sqlPagos);
         $stmt->bind_param('i', $matricula);
         
-        if (!$stmt->execute()) {
-            throw new Exception("Error en la consulta de pagos: " . $stmt->error);
-        }
+        
         
         $result = $stmt->get_result();
         $pagos = $result->fetch_all(MYSQLI_ASSOC);
@@ -134,7 +141,7 @@ try {
             $conn->autocommit(FALSE); // Iniciar transacción
             
             $stmt = $conn->prepare("
-                INSERT INTO Otros_Pagos 
+                INSERT INTO otros_pagos 
                 (FK_Matricula, Fecha, Concepto, Monto) 
                 VALUES (?, ?, 'Materiales', ?)
             ");
@@ -179,7 +186,7 @@ try {
         
         try {
             $stmt = $conn->prepare("
-                INSERT INTO Otros_Pagos 
+                INSERT INTO otros_pagos 
                 (FK_Matricula, Fecha, Concepto, Monto) 
                 VALUES (?, ?, ?, ?)
             ");
@@ -209,7 +216,7 @@ try {
         $nombre = isset($_POST['nombre']) ? $conn->real_escape_string($_POST['nombre']) : '';
 
         // Construir consulta SQL segura
-        $sql = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM Alumnos WHERE 1=1";
+        $sql = "SELECT ID_Matricula, Apellido_PAT, Apellido_MAT, Nombre, Ano, Grupo FROM alumnos WHERE 1=1";
         $types = '';
         $params = [];
 

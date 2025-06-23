@@ -57,7 +57,7 @@ document.querySelectorAll('.btn-guardar').forEach(btn => {
             data.Constancia = document.querySelector('[name="Constancia"]').value;
         }
 
-        fetch('../../php/informacion/actualizar_datos.php', {
+        fetch('../../Php/informacion/actualizar_datos.php', {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }
@@ -109,7 +109,7 @@ document.querySelectorAll('.btn-cancelar').forEach(btn =>{
 async function cargarNombreAlumno(id) {
     try {
         console.log("Cargando datos de alumno", id);
-        const response = await fetch(`../../php/informacion/cargar_perfil.php?id=${id}`);
+        const response = await fetch(`../../Php/informacion/cargar_perfil.php?id=${id}`);
         const text = await response.text();
         console.log("Respuesta raw:", text);
 
@@ -139,7 +139,7 @@ function mostrarError(mensaje) {
 }
 
 function cargarDatosAlumno(idAlumno) {
-    fetch(`../../php/informacion/cargar_datos.php?id=${idAlumno}`)
+    fetch(`../../Php/informacion/cargar_datos.php?id=${idAlumno}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
